@@ -24,7 +24,9 @@ function Login() {
 
               <div className="field">
                 <p className="control has-icons-left has-icons-right">
-                  <input className="input" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                  <input className="input" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}
+                    autoComplete="on"
+                  />
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>
                   </span>
@@ -35,7 +37,9 @@ function Login() {
               <div className="field">
                 <p className="control has-icons-left">
                   <input className="input" type="password"
-                    value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                    value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"
+                    autoComplete="on"
+                  />
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>
                   </span>

@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Bar from '../Components/Bar'
 
 const Register = () => {
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [height, setHeight] = useState('')
+  const [weight, setWeight] = useState('')
+  const [gender, setGender] = useState('')
+  const [activity, setActivity] = useState(0)
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(event.target.value)
+    const user = {
+      username: username,
+      email: email,
+      password: password,
+      height: height,
+      weight: weight,
+      gender: gender,
+      acivity: activity
+    }
+    console.log(user)
   }
   return (
     <>
@@ -16,21 +33,50 @@ const Register = () => {
           </div>
 
           <div className="field">
-            <label className="label">UserName</label>
+            <label className="label">Username</label>
             <div className="control has-icons-left has-icons-right">
-              <input className="input " type="text" placeholder="Enter your UserName " />
+              <input
+                className="input "
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your Username "
+                autoComplete="off"
+              />
               <span className="icon is-small is-left">
                 <i className="fas fa-user"></i>
               </span>
-
             </div>
+          </div>
 
+          <div className="field">
+            <label className="label">Email</label>
+            <div className="control has-icons-left has-icons-right">
+              <input
+                className="input "
+                type="email"
+                placeholder="Enter your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="off"
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-envelope"></i>
+              </span>
+            </div>
           </div>
 
           <div className="field ">
             <label className="label">Password</label>
             <p className="control has-icons-left">
-              <input className="input" type="password" placeholder="Password" />
+              <input
+                className="input"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="off"
+              />
               <span className="icon is-small is-left">
                 <i className="fas fa-lock"></i>
               </span>
@@ -42,7 +88,7 @@ const Register = () => {
               <label className="label">Gender</label>
 
               <div className="select">
-                <select>
+                <select onChange={(e) => setGender(e.target.value)} >
                   <option default>Select</option>
                   <option value='male'>Male</option>
                   <option value='female'>Female</option>
@@ -52,12 +98,24 @@ const Register = () => {
 
             <div className="control is-expanded">
               <label className="label">Weight</label>
-              <input className="input" type="number" placeholder=" kg"></input>
+              <input
+                className="input"
+                type="number"
+                placeholder=" kg"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+              ></input>
             </div>
 
             <div className="control is-expanded">
               <label className="label">Height</label>
-              <input className="input" type="number" placeholder=" cm" />
+              <input
+                className="input"
+                type="number"
+                placeholder=" cm"
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+              />
             </div>
           </div>
 
@@ -66,7 +124,8 @@ const Register = () => {
 
           <div className="control is-expanded">
             <div className="select is-fullwidth">
-              <select name="levelActivity">
+              <select name="levelActivity"
+                onChange={(e) => setActivity(e.target.value)}>
                 <option default>Select</option>
                 <option value="1">I make exercise 1 day of the week</option>
                 <option value="2">I make exercise 2 days of the week</option>

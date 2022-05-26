@@ -1,16 +1,27 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Bar from '../Components/Bar'
+import loginService from '../Services/loginService'
 
 function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
+  const navigate = useNavigate()
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(username)
-    console.log(password)
-
+    const userLog = {
+      username: username,
+      password: password
+    }
+    // Service for login the user
+    const { data } = loginService(userLog)
+    if (data) navigate("/home", { replace: true });
   }
+
+
+
   return (
     <>
       <Bar />
@@ -46,9 +57,9 @@ function Login() {
                 </p>
               </div>
 
-              <div className="field">
+              <div className="field is-align-self-center ">
                 <p className="control">
-                  <button className="button is-success">
+                  <button className="button is-success ">
                     Login
                   </button>
                 </p>

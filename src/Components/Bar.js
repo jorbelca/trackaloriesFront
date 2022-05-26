@@ -1,4 +1,4 @@
-import React from 'react'
+import logo from '../assets/calories-icon-4.jpg'
 import { Link } from 'react-router-dom'
 
 const Bar = () => {
@@ -9,7 +9,7 @@ const Bar = () => {
         <div className="navbar-start">
           <Link className="navbar-item" to="/">
 
-            <img src="../../assets/" />
+            <img src={logo} alt={'logo'} width={32} height={32} />
             <h1 className='title'>TrackAlories</h1>
           </Link>
         </div>

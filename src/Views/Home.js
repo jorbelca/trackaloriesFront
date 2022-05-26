@@ -1,8 +1,16 @@
 import React from 'react'
+import Bar from '../Components/Bar'
+import Search from '../Components/Search'
+
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+      <Bar />
+      <div>Home</div>
+      <Search />
+
+    </>
   )
 }
 

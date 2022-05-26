@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import Bar from '../Components/Bar'
+import registerService from '../Services/registerService'
 
 const Register = () => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [height, setHeight] = useState('')
-  const [weight, setWeight] = useState('')
-  const [gender, setGender] = useState('')
+  const [height, setHeight] = useState(0)
+  const [weight, setWeight] = useState(0)
+  const [gender, setGender] = useState(0)
   const [activity, setActivity] = useState(0)
 
   const handleSubmit = (event) => {
@@ -16,12 +17,14 @@ const Register = () => {
       username: username,
       email: email,
       password: password,
-      height: height,
-      weight: weight,
+      height: Number(height),
+      weight: Number(weight),
       gender: gender,
-      acivity: activity
+      activity: Number(activity)
     }
-    console.log(user)
+    // Service for registratio
+    const { data } = registerService(user)
+    console.log(data)
   }
   return (
     <>
@@ -127,12 +130,12 @@ const Register = () => {
               <select name="levelActivity"
                 onChange={(e) => setActivity(e.target.value)}>
                 <option default>Select</option>
-                <option value="1">I make exercise 1 day of the week</option>
-                <option value="2">I make exercise 2 days of the week</option>
-                <option value="3">I make exercise 3 days of the week</option>
-                <option value="4">I make exercise 4 days of the week</option>
-                <option value="5">I make exercise 5 days of the week</option>
-                <option value="6">I make exercise 6 or more days of the week</option>
+                <option value={1}>I make exercise 1 day of the week</option>
+                <option value={2}>I make exercise 2 days of the week</option>
+                <option value={3}>I make exercise 3 days of the week</option>
+                <option value={4}>I make exercise 4 days of the week</option>
+                <option value={5}>I make exercise 5 days of the week</option>
+                <option value={6}>I make exercise 6 or more days of the week</option>
               </select>
             </div>
           </div>

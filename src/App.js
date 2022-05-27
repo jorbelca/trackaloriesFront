@@ -1,4 +1,5 @@
 import 'bulma/css/bulma.min.css';
+import './App.css'
 import { Routes, Route } from "react-router-dom";
 import Landing from './Views/Landing';
 import Register from './Views/Register'

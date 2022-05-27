@@ -19,24 +19,27 @@ const Search = () => {
   return (
     <>
       <div className="container is-max-desktop">
-        <div>Search</div>
+        <div className="column is-four-fifths">
 
-        <form onSubmit={handleSubmit}>
-          <div className="field has-addons">
-            <div className="control is-expanded">
+          <div>Search</div>
 
-              <input className="input" type="text" placeholder="Find your meal" value={search} onChange={(e) => setSearch(e.target.value)} />
+          <form onSubmit={handleSubmit}>
+            <div className="field has-addons">
+              <div className="control is-expanded">
+
+                <input className="input" type="text" placeholder="Find your meal" value={search} onChange={(e) => setSearch(e.target.value)} />
+              </div>
+              <div className="control">
+                <button className="button is-info">
+                  Search
+                </button>
+              </div>
+
             </div>
-            <div className="control">
-              <button className="button is-info">
-                Search
-              </button>
-            </div>
-
-          </div>
-        </form>
-        {/* Results of the search */}
-        <Results data={results} />
+          </form>
+          {/* Results of the search */}
+          <Results data={results} />
+        </div>
       </div>
 
 

@@ -2,14 +2,14 @@ import React from 'react'
 import CardResults from './CardResults';
 
 const Results = (data) => {
-  console.log(data);
+
   let food
   data.data.map(n => { food = n })
 
   return (
     <>
-      <div>Results</div>
-      <div>
+
+      <div className='mt-3'>
         {food
           ? <CardResults food={food} />
           : ''}

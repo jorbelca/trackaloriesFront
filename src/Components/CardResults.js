@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CardResults = (food) => {
-  const { food_name, photo, nf_calories, nf_total_carbohydrate, nf_total_fat, nf_protein } = food.food
+  const { food_name, photo, nf_calories, nf_total_carbohydrate, nf_total_fat, nf_protein, serving_weight_grams } = food.food
   return (
     <div>
       <article className="media">
@@ -13,7 +13,7 @@ const CardResults = (food) => {
         <div className="media-content">
           <div className="content">
             <p>
-              <strong>{food_name}</strong>
+              <strong>{serving_weight_grams + ' grams of ' + food_name}</strong>
             </p>
           </div>
           <nav className="level is-mobile">

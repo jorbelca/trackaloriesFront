@@ -22,7 +22,7 @@ const Register = () => {
       gender: gender,
       activity: Number(activity)
     }
-    // Service for registratio
+    // Service for registration
     const { data } = registerService(user)
     console.log(data)
   }
@@ -151,7 +151,7 @@ const Register = () => {
 
           <div className="field is-grouped">
             <div className="control">
-              <button className="button is-link" type='submit'>Register</button>
+              <button className="button is-link " type='submit'>Register</button>
             </div>
             <div className="control">
               <button className="button is-link is-light">Cancel</button>

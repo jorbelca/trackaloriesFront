@@ -1,6 +1,6 @@
 import axios from "axios"
-import { API_URL } from "../config/envConfig"
-const baseUrl = `${API_URL}/register`
+import { BACKEND_API_URL } from "../config/envConfig"
+const baseUrl = `${BACKEND_API_URL}/register`
 
 const registerService = async (credentials) => {
   try {

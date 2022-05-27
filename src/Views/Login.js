@@ -4,7 +4,7 @@ import Bar from '../Components/Bar'
 import loginService from '../Services/loginService'
 
 function Login() {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
@@ -12,12 +12,14 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault()
     const userLog = {
-      username: username,
+      email: email,
       password: password
     }
+    
     // Service for login the user
-    const { data } = loginService(userLog)
-    if (data) navigate("/home", { replace: true });
+    const response = loginService(userLog)
+    console.log(response);
+    if (response) navigate("/home", { replace: true });
   }
 
 
@@ -35,7 +37,7 @@ function Login() {
 
               <div className="field">
                 <p className="control has-icons-left has-icons-right">
-                  <input className="input" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}
+                  <input className="input" type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}
                     autoComplete="on"
                   />
                   <span className="icon is-small is-left">

@@ -18,7 +18,10 @@ export const useStore = create(set => ({
   setUser: (loggedUser) => set(() => ({ user: loggedUser })),
 
   search: [],
-  setSearch: (newSearch) => set(() => ({ search: newSearch }))
+  setSearch: (newSearch) => set(() => ({ search: newSearch })),
+
+  errors: [],
+  setErrors: (error) => set(() => ({ errors: error }))
 }))
 
 

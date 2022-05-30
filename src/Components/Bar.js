@@ -1,9 +1,10 @@
 import logo from '../assets/calories-icon-4.jpg'
 import { Link } from 'react-router-dom'
 import { useStore } from '../state/store'
+import ErrorBar from './ErrorBar'
 
 const Bar = () => {
-  const { user } = useStore()
+  const { user, errors } = useStore()
 
   return (
     <>
@@ -43,7 +44,9 @@ const Bar = () => {
         </div>
       </nav >
 
-
+      {errors.length > 0
+        ? <ErrorBar />
+        : ''}
 
     </>
   )

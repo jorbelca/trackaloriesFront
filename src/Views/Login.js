@@ -9,7 +9,7 @@ function Login() {
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
-  const { setUser } = useStore()
+  const { setUser, setErrors } = useStore()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -20,8 +20,15 @@ function Login() {
 
     // Service for login the user
     const response = await loginService(userLog)
-    if (response) setUser(response.data);
-    if (response.status == 200) navigate("/home", { replace: true });
+    // Handle errors
+
+    if (response.status ===  404 || 400) setErrors(response.message)
+    if (response.status === 0 ) setErrors('Has been a problem with the connection with the server')
+
+    if (response.status === 200) setUser(response.data);
+    if (response.status === 200) navigate("/home", { replace: true })
+
+
   }
 
 
@@ -41,6 +48,7 @@ function Login() {
                 <p className="control has-icons-left has-icons-right">
                   <input className="input" type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}
                     autoComplete="on"
+                    required
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>
@@ -54,6 +62,7 @@ function Login() {
                   <input className="input" type="password"
                     value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"
                     autoComplete="on"
+                    required
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>

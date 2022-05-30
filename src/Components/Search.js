@@ -6,15 +6,21 @@ import Results from './Results'
 const Search = () => {
   const [search, setSearchFood] = useState('')
 
-  const { setSearch } = useStore()
+  const { setSearch, setErrors } = useStore()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
     // Service for the search of the meal
     const response = await searchService(search)
+
+    // Handle errors
+    if (response.status === 404 || 400) setErrors(response.data.message)
+    if (response.status === 0 ) setErrors('Has been a problem with the connection with the server')
+
     // Storing in the global state
-    if (response) setSearch(response.foods[0])
+    if (response.status === 200) setSearch(response.foods[0])
+
   }
 
 

@@ -3,6 +3,7 @@ import { NUTRITION_API_URL, X_APP_ID, X_APP_KEY } from "../config/envConfig"
 
 
 const searchService = async (search) => {
+
   const config = {
     method: 'POST',
     headers: {
@@ -19,6 +20,7 @@ const searchService = async (search) => {
     return response.data
   } catch (e) {
     console.error(e)
+    return e.response
   }
 }
 

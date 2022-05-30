@@ -9,6 +9,7 @@ const registerService = async (credentials) => {
     return response.data
   } catch (e) {
     console.error(e)
+    return e.response
   }
 }
 

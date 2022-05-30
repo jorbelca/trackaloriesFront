@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Bar from '../Components/Bar'
 import registerService from '../Services/registerService'
+import { useStore } from '../state/store'
 
 const Register = () => {
   const [username, setUsername] = useState('')
@@ -10,6 +11,8 @@ const Register = () => {
   const [weight, setWeight] = useState(0)
   const [gender, setGender] = useState(0)
   const [activity, setActivity] = useState(0)
+
+  const { setErrors } = useStore()
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -23,8 +26,12 @@ const Register = () => {
       activity: Number(activity)
     }
     // Service for registration
-    const { data } = registerService(user)
-    console.log(data)
+    const response = registerService(user)
+
+    // Handle errors
+    if (response.status === 404 || 400) setErrors(response.data.message)
+    if (response.status === 0) setErrors('Has been a problem with the connection with the server')
+
   }
   return (
     <>

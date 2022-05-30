@@ -4,19 +4,17 @@ import { useStore } from '../state/store'
 import Results from './Results'
 
 const Search = () => {
-  const [search, setSearch] = useState('')
-  const [results, setResults] = useState([])
-  const { setMeal, meals } = useStore()
+  const [search, setSearchFood] = useState('')
+
+  const { setSearch } = useStore()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
     // Service for the search of the meal
     const response = await searchService(search)
-
-    if (response) setResults(response.foods)
-    if (response) setMeal(response.foods[0])
-
+    // Storing in the global state
+    if (response) setSearch(response.foods[0])
   }
 
 
@@ -32,7 +30,7 @@ const Search = () => {
             <div className="field has-addons">
               <div className="control is-expanded">
 
-                <input className="input" type="text" placeholder="Find your meal" value={search} onChange={(e) => setSearch(e.target.value)} />
+                <input className="input" type="text" placeholder="Find your meal" value={search} onChange={(e) => setSearchFood(e.target.value)} />
               </div>
               <div className="control">
                 <button className="button is-info">
@@ -43,7 +41,7 @@ const Search = () => {
             </div>
           </form>
           {/* Results of the search */}
-          <Results data={results} />
+          <Results />
         </div>
       </div>
 

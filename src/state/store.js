@@ -5,7 +5,7 @@ export const useStore = create(set => ({
 
   setMeal: (newMeal) =>
     set(state => ({
-      meals: [...state.meals, { id: state.meals.length + 1, newMeal }]
+      meals: [...state.meals, { id: state.meals.length + 1, ...newMeal }]
     }))
   ,
   removeMeal: (id) => {
@@ -16,6 +16,9 @@ export const useStore = create(set => ({
 
   user: {},
   setUser: (loggedUser) => set(() => ({ user: loggedUser })),
+
+  search: [],
+  setSearch: (newSearch) => set(() => ({ search: newSearch }))
 }))
 
 

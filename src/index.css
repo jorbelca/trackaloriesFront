@@ -15,5 +15,16 @@ code {
 .card-results{
   background-color: #fff;
   border-radius: 5px;
-  padding: 3px;
+  padding: 10px;
+}
+
+button.button.button-add{
+  color:green;
+  border:none;
+  background-color: #fff;
+  }
+button.button-remove{
+  color: red;
+  border: none;
+  background-color: #fff;
 }

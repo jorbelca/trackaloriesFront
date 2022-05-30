@@ -5,6 +5,7 @@ import Landing from './Views/Landing';
 import Register from './Views/Register'
 import Login from './Views/Login'
 import Home from './Views/Home';
+import Personal from './Views/Personal';
 
 function App() {
   return <div className="App">
@@ -13,6 +14,7 @@ function App() {
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
       <Route path='/home' element={<Home />} />
+      <Route path='/personal' element={<Personal />} />
     </Routes>
   </div>
 }

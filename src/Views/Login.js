@@ -2,24 +2,26 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Bar from '../Components/Bar'
 import loginService from '../Services/loginService'
+import { useStore } from '../state/store'
 
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
+  const { setUser } = useStore()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const userLog = {
       email: email,
       password: password
     }
-    
+
     // Service for login the user
-    const response = loginService(userLog)
-    console.log(response);
-    if (response) navigate("/home", { replace: true });
+    const response = await loginService(userLog)
+    if (response) setUser(response.data);
+    if (response.status == 200) navigate("/home", { replace: true });
   }
 
 

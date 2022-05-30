@@ -1,9 +1,31 @@
 import React from 'react'
+import { useStore } from '../state/store'
 
-const CardResults = (food) => {
-  const { food_name, photo, nf_calories, nf_total_carbohydrate, nf_total_fat, nf_protein, serving_weight_grams } = food.food
-  return (
-    <div>
+
+const CardResults = () => {
+  const { setMeal, meals } = useStore()
+  let food
+  console.log(meals);
+  meals.map(n => food = n.newMeal)
+
+  const { food_name, photo, nf_calories, nf_total_carbohydrate, nf_total_fat, nf_protein, serving_weight_grams } = food
+
+
+
+  const currentMeal = {
+    name: food_name || '',
+    photo: photo.thumb || '',
+    calories: nf_calories || '',
+    carbohidrates: nf_total_carbohydrate || '',
+    proteins: nf_protein || '',
+    fats: nf_total_fat || ''
+  }
+
+
+
+  return (<>
+
+    <div className='card-results'>
       <article className="media">
         <figure className="media-left">
           <p className="image is-64x64">
@@ -51,8 +73,10 @@ const CardResults = (food) => {
             </span>
           </button>
         </div>
-      </article>
-    </div>
+
+      </article >
+    </div >
+  </>
   )
 }
 

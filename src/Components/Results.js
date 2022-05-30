@@ -1,4 +1,5 @@
 import React from 'react'
+
 import CardResults from './CardResults';
 
 const Results = (data) => {
@@ -10,6 +11,7 @@ const Results = (data) => {
     <>
 
       <div className='mt-3'>
+
         {food
           ? <CardResults food={food} />
           : ''}

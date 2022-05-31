@@ -20,9 +20,21 @@ const Bar = () => {
 
           <div className="navbar-end">
             <div className="navbar-item">
+
+              <Link to="/home" className="icon-text m-7">
+                <span className="icon">
+                  <i className="fa-solid fa-search"></i>
+                </span>
+              </Link>
               {user.username
                 ?
                 <div className='isLogged mr-6'>
+
+                  <Link to="/diary" className="icon-text ml-6">
+                    <span className="icon">
+                      <i className="fa-solid fa-book"></i>
+                    </span>
+                  </Link>
                   <Link to='/personal' className="icon-text">
                     <span className="icon">
                       <i className="fa-solid fa-user"></i>

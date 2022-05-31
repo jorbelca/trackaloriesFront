@@ -1,9 +1,10 @@
 import React from 'react'
-import storeMealService from '../Services/storeMealsService'
+import {storeMealService} from '../Services/storeMealsService'
 import { useStore } from '../state/store'
 
 const ListStore = () => {
-  const { meals, removeMeal } = useStore()
+  const { meals, user, removeMeal } = useStore()
+  const token = user.token
 
   let totalCal = 0
   let totalProt = 0
@@ -25,7 +26,7 @@ const ListStore = () => {
           <div className="save-btn">
             <button onClick={(e) => {
               e.preventDefault()
-              storeMealService(meals)
+              storeMealService(meals, token)
             }} className="button button-save is-align-items-flex-end">
               <p>Save in the diary</p>
               <span className="icon ">

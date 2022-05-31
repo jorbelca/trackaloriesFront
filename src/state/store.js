@@ -2,7 +2,6 @@ import create from 'zustand'
 
 export const useStore = create(set => ({
   meals: [],
-
   setMeal: (newMeal) =>
     set(state => ({
       meals: [...state.meals, { id: state.meals.length + 1, ...newMeal }]
@@ -14,7 +13,7 @@ export const useStore = create(set => ({
     }))
   },
 
-  user: {},
+  user: { },
   setUser: (loggedUser) => set(() => ({ user: loggedUser })),
 
   search: [],

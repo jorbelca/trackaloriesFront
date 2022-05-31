@@ -13,7 +13,7 @@ const Results = () => {
           ? ''
           : <>
             <CardResults />
-            <hr />
+
             <ListStore />
           </>
         }

@@ -6,7 +6,7 @@ const ErrorBar = () => {
   if (errors.length > 0) setTimeout(() => setErrors(''), 3000)
   return (
     <>
-      <div class="notification is-danger">
+      <div className="notification is-danger p-3 has-text-weight-bold">
         {errors}
       </div>
     </>

@@ -17,7 +17,10 @@ code {
   border-radius: 5px;
   padding: 10px;
 }
-
+.save-btn {
+  display: flex;
+  margin-top: -25px;
+  }
 button.button.button-add{
   color:green;
   border:none;
@@ -27,4 +30,10 @@ button.button-remove{
   color: red;
   border: none;
   background-color: #fff;
+}
+button.button.button-save{
+  color: rgb(141, 26, 26);
+  border: none;
+  background-color: transparent;
+  margin-left: auto;  
 }

@@ -16,10 +16,10 @@ const Search = () => {
 
     // Handle errors
     if (response.status === 404 || 400) setErrors(response.data.message)
-    if (response.status === 0 ) setErrors('Has been a problem with the connection with the server')
+    if (response.status === 0) setErrors('Has been a problem with the connection with the server')
 
     // Storing in the global state
-    if (response.status === 200) setSearch(response.foods[0])
+    if (response.status === 200) setSearch(response.data.foods[0])
 
   }
 
@@ -28,9 +28,6 @@ const Search = () => {
     <>
       <div className="container is-max-desktop">
         <div className="column is-four-fifths">
-
-          <div>Search</div>
-
 
           <form onSubmit={handleSubmit}>
             <div className="field has-addons">

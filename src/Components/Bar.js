@@ -8,7 +8,6 @@ const Bar = () => {
 
   return (
     <>
-
       <nav className="navbar " role="navigation" aria-label="main navigation">
         <div className="navbar-menu">
           <div className="navbar-start">
@@ -44,9 +43,9 @@ const Bar = () => {
         </div>
       </nav >
 
-      {errors.length > 0
-        ? <ErrorBar />
-        : ''}
+      {errors === undefined || errors.length === 0
+        ? <></>
+        : <ErrorBar />}
 
     </>
   )

@@ -9,7 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [height, setHeight] = useState(0)
   const [weight, setWeight] = useState(0)
-  const [gender, setGender] = useState(0)
+  const [sex, setSex] = useState(0)
   const [activity, setActivity] = useState(0)
 
   const { setErrors } = useStore()
@@ -22,7 +22,7 @@ const Register = () => {
       password: password,
       height: Number(height),
       weight: Number(weight),
-      gender: gender,
+      sex: sex,
       activity: Number(activity)
     }
     // Service for registration
@@ -39,69 +39,91 @@ const Register = () => {
       <div className="container is-three-quarters m-5">
         <form onSubmit={handleSubmit}>
           <div className="title is-3 center">
-            <h1>Register</h1>
-          </div>
-
-          <div className="field">
-            <label className="label">Username</label>
-            <div className="control has-icons-left has-icons-right">
-              <input
-                className="input "
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter your Username "
-                autoComplete="off"
-              />
-              <span className="icon is-small is-left">
-                <i className="fas fa-user"></i>
-              </span>
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Email</label>
-            <div className="control has-icons-left has-icons-right">
-              <input
-                className="input "
-                type="email"
-                placeholder="Enter your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="off"
-              />
-              <span className="icon is-small is-left">
-                <i className="fas fa-envelope"></i>
-              </span>
-            </div>
-          </div>
-
-          <div className="field ">
-            <label className="label">Password</label>
-            <p className="control has-icons-left">
-              <input
-                className="input"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="off"
-              />
-              <span className="icon is-small is-left">
-                <i className="fas fa-lock"></i>
-              </span>
-            </p>
+            <h3>Register</h3>
           </div>
 
           <div className="field is-grouped">
             <div className="control is-expanded">
-              <label className="label">Gender</label>
+              <label className="label">Username</label>
+              <div className="control has-icons-left has-icons-right">
+                <input
+                  className="input "
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Enter your Username "
+                  autoComplete="off"
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-user"></i>
+                </span>
+              </div>
+            </div>
+
+            <div className="control is-expanded">
+              <label className="label">Email</label>
+              <div className="control has-icons-left has-icons-right">
+                <input
+                  className="input "
+                  type="email"
+                  placeholder="Enter your Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="off"
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="field is-grouped">
+            <div className="control is-expanded ">
+              <label className="label">Password</label>
+              <p className="control has-icons-left">
+                <input
+                  className="input"
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="off"
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+
+            <div className="control is-expanded ">
+              <label className="label">Password</label>
+              <p className="control has-icons-left">
+                <input
+                  className="input"
+                  type="date"
+
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="off"
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-calendar"></i>
+                </span>
+              </p>
+            </div>
+
+          </div>
+
+          <div className="field is-grouped">
+            <div className="control is-expanded">
+              <label className="label">Sex</label>
 
               <div className="select">
-                <select onChange={(e) => setGender(e.target.value)} >
+                <select onChange={(e) => setSex(e.target.value)} >
                   <option default>Select</option>
-                  <option value='male'>Male</option>
                   <option value='female'>Female</option>
+                  <option value='male'>Male</option>
                 </select>
               </div>
             </div>

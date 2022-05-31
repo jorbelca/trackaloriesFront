@@ -17,7 +17,7 @@ const searchService = async (search) => {
 
   try {
     const response = await axios(config)
-    return response.data
+    return response
   } catch (e) {
     console.error(e)
     return e.response

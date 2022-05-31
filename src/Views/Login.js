@@ -20,25 +20,22 @@ function Login() {
 
     // Service for login the user
     const response = await loginService(userLog)
-    // Handle errors
+    console.log(response);
 
-    if (response.status ===  404 || 400) setErrors(response.message)
-    if (response.status === 0 ) setErrors('Has been a problem with the connection with the server')
+    // Handle errors
+    if (response.status === 404 || 400) setErrors(response.message)
+    if (response.status === 0 || response.data === null) setErrors('Has been a problem with the connection with the server')
 
     if (response.status === 200) setUser(response.data);
     if (response.status === 200) navigate("/home", { replace: true })
-
-
   }
-
-
 
   return (
     <>
       <Bar />
 
       <div className="container is-max-desktop m-6">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="on">
           <div className="columns is-mobile">
             <div className="column is-three-fifths is-offset-one-fifth">
               <div className="title is-3 has-text-centered"><h1>Login</h1></div>
@@ -46,7 +43,10 @@ function Login() {
 
               <div className="field">
                 <p className="control has-icons-left has-icons-right">
-                  <input className="input" type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}
+                  <input
+                    className="input"
+                    type="email"
+                    placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}
                     autoComplete="on"
                     required
                   />
@@ -59,8 +59,11 @@ function Login() {
 
               <div className="field">
                 <p className="control has-icons-left">
-                  <input className="input" type="password"
-                    value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"
+                  <input
+                    className="input"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)} placeholder="Password"
                     autoComplete="on"
                     required
                   />

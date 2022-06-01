@@ -28,8 +28,9 @@ function Login() {
 
 
     if (response.status === 200) {
+      console.log(response.data);
       setUser(response.data)
-      window.localStorage.setItem("loggedUser", JSON.stringify(response.data.token))
+      window.localStorage.setItem("loggedUser", response.data.token)
       navigate("/home", { replace: true })
 
     }

@@ -7,16 +7,9 @@ import Login from './Views/Login'
 import Home from './Views/Home';
 import Personal from './Views/Personal';
 import Diary from './Views/Diary';
-import { useStore } from './state/store';
-import { useEffect } from 'react';
+
 
 function App() {
-  const { setUser } = useStore()
-  useEffect(() => {
-    const localToken = window.localStorage.getItem("loggedUser")
-    if (localToken) setUser({ token: localToken })
-  }, [])
-
   return (
     <div className="App">
       <Routes>

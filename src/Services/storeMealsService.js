@@ -5,7 +5,7 @@ const baseUrl = `${BACKEND_API_URL}/meals`
 
 const storeMealService = async (data, token) => {
   let currentDate = new Date()
-  let day = currentDate.getDate()
+  let day = currentDate.getDate() 
   let month = currentDate.getMonth() + 1
   let year = currentDate.getFullYear()
   let completeDate = (day + "/" + month + "/" + year)
@@ -42,4 +42,4 @@ const getMealsService = async (token) => {
   }
 }
 
-export  { storeMealService,getMealsService }
+export { storeMealService, getMealsService }

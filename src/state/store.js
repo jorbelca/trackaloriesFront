@@ -7,11 +7,15 @@ export const useStore = create(set => ({
       meals: [...state.meals, { id: state.meals.length + 1, ...newMeal }]
     }))
   ,
-  removeMeal: (id) => {
+  removeMeal: (id) =>
     set(state => ({
       meals: state.meals.filter((meal) => meal.id !== id)
-    }))
-  },
+    })),
+  resetSearchedMeals: () =>
+    set(() => ({
+      meals: []
+    })),
+
 
   user: {},
   setUser: (loggedUser) => set(() => ({ user: loggedUser })),

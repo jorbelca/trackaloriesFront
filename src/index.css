@@ -37,3 +37,11 @@ button.button.button-save{
   background-color: transparent;
   margin-left: auto;  
 }
+.totalCard{
+  display: flex;
+}
+
+.totalMacros{
+  margin-left: auto; 
+  margin-right: -10px;
+}

@@ -36,7 +36,7 @@ const Bar = () => {
                   <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 </span>
               </button>
-              {user.username
+              {user.token
                 ?
                 <div className='isLogged mr-6'>
 

@@ -3,7 +3,7 @@ import { storeMealService } from '../Services/storeMealsService'
 import { useStore } from '../state/store'
 
 const ListStore = () => {
-  const { meals, user, removeMeal } = useStore()
+  const { meals, user, removeMeal,resetSearchedMeals } = useStore()
   const token = user.token
 
   let totalCal = 0
@@ -27,6 +27,7 @@ const ListStore = () => {
             <button onClick={(e) => {
               e.preventDefault()
               storeMealService(meals, token)
+              resetSearchedMeals()
             }} className="button button-save is-align-items-flex-end">
               <p>Save in the diary</p>
               <span className="icon ">

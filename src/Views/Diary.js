@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Bar from '../Components/Bar'
 import { useStore } from '../state/store'
 import { getMealsService } from '../Services/storeMealsService'
+import Dropdown from '../Components/Dropdown'
 
 const Diary = () => {
   const [meals, setMeals] = useState([])
@@ -11,21 +12,10 @@ const Diary = () => {
   useEffect(() => {
     const find = async (token) => {
       const { data } = await getMealsService(token)
-
-      let results
-      data.map(n => results = n.data)
-
-
-      setMeals(results)
+      setMeals(data)
     }
     find(token)
   }, [])
-
-
-
-
-  console.log(meals);
-
 
   return (
     <>
@@ -33,7 +23,12 @@ const Diary = () => {
       <div>Diary</div>
 
       {meals.map(meal =>
-        <div key={meal.id} className='card-results'>
+        <>
+          <Dropdown data={meal} />
+        </>
+      )}
+      {/* {meals.map(meal =>
+        <div key={meal.ndb_no} className='card-results'>
           <article className="media">
             <figure className="media-left">
               <p className="image is-64x64">
@@ -73,23 +68,11 @@ const Diary = () => {
                 </div>
               </nav>
             </div>
-            <div className="media-right 
-           mt-4">
 
-              <button onClick={(e) => {
-                e.preventDefault()
-
-              }} className="button button-remove">
-                <span className="icon ">
-                  <i className="fas fa-lg fa-solid fa-circle-minus"></i>
-                </span>
-              </button>
-
-            </div>
 
           </article >
         </div >)
-      }
+      } */}
     </>
 
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import {storeMealService} from '../Services/storeMealsService'
+import { storeMealService } from '../Services/storeMealsService'
 import { useStore } from '../state/store'
 
 const ListStore = () => {

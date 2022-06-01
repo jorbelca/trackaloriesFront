@@ -13,14 +13,29 @@ export const useStore = create(set => ({
     }))
   },
 
-  user: { },
+  user: {},
   setUser: (loggedUser) => set(() => ({ user: loggedUser })),
+  removeUser: () => {
+    set(() => ({ user: {} }))
+  }
+  ,
 
   search: [],
   setSearch: (newSearch) => set(() => ({ search: newSearch })),
 
   errors: [],
-  setErrors: (error) => set(() => ({ errors: error }))
+  setErrors: (error) => set(() => ({
+    errors: [error]
+  })),
+  removeErrors: () => set(() => ({
+    errors: []
+  }))
+  ,
+  notifications: [],
+  setNotification: (notification) => set(() => ({ notifications: [notification] })),
+  removeNotification: () => set(() => ({
+    notifications: []
+  })),
 }))
 
 

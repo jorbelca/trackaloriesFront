@@ -6,27 +6,35 @@ import Dropdown from '../Components/Dropdown'
 
 const Diary = () => {
   const [meals, setMeals] = useState([])
-  const { user } = useStore()
-  const token = user.token
+  const { user, setErrors } = useStore()
+  const token = user.token || window.localStorage.getItem("loggedUser")
+
+
 
   useEffect(() => {
     const find = async (token) => {
-      const { data } = await getMealsService(token)
-      setMeals(data)
+      const response = await getMealsService(token)
+      if (response.status !== 200) {
+        return setErrors(response.statusText)
+      }
+      setMeals(response.data)
     }
     find(token)
   }, [])
 
+  // console.log(meals);
   return (
     <>
       <Bar />
       <div>Diary</div>
 
-      {meals.map(meal =>
-        <>
-          <Dropdown data={meal} />
-        </>
-      )}
+      {meals === undefined || meals.length === 0
+        ? ''
+        : meals.map(meal =>
+          <>
+            <Dropdown key={meal.date} data={meal} />
+          </>
+        )}
       {/* {meals.map(meal =>
         <div key={meal.ndb_no} className='card-results'>
           <article className="media">

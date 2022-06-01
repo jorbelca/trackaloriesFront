@@ -20,14 +20,19 @@ function Login() {
 
     // Service for login the user
     const response = await loginService(userLog)
-    console.log(response);
+
 
     // Handle errors
     if (response.status === 404 || 400) setErrors(response.message)
     if (response.status === 0 || response.data === null) setErrors('Has been a problem with the connection with the server')
 
-    if (response.status === 200) setUser(response.data);
-    if (response.status === 200) navigate("/home", { replace: true })
+
+    if (response.status === 200) {
+      setUser(response.data)
+      window.localStorage.setItem("loggedUser", JSON.stringify(response.data.token))
+      navigate("/home", { replace: true })
+
+    }
   }
 
   return (

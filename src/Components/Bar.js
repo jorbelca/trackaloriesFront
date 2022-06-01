@@ -1,10 +1,11 @@
 import logo from '../assets/calories-icon-4.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useStore } from '../state/store'
-import ErrorBar from './ErrorBar'
+import Notification from './Notification'
 
 const Bar = () => {
-  const { user, errors } = useStore()
+  const { user, errors, removeUser } = useStore()
+  const navigate = useNavigate()
 
   return (
     <>
@@ -26,6 +27,15 @@ const Bar = () => {
                   <i className="fa-solid fa-search"></i>
                 </span>
               </Link>
+              <button className="icon-text m-7 " onClick={() => {
+                window.localStorage.removeItem("loggedUser")
+                removeUser()
+                navigate("/")
+              }}>
+                <span className="icon has-text-danger-dark ">
+                  <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                </span>
+              </button>
               {user.username
                 ?
                 <div className='isLogged mr-6'>
@@ -57,7 +67,7 @@ const Bar = () => {
 
       {errors === undefined || errors.length === 0
         ? <></>
-        : <ErrorBar />}
+        : <Notification />}
 
     </>
   )

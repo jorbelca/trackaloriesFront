@@ -26,16 +26,15 @@ const ListStore = () => {
         "You're going to save the meals, and won't be able to modify them. The information is correct? "
       )
     ) {
-      setMessages(["AAAAA"])
-      // const response = await storeMealService(meals, token)
-      // resetSearchedMeals()
+      const response = await storeMealService(meals, token)
+      resetSearchedMeals()
 
-      // if (response.status !== 200) {
-      //   return setErrors(response.response.data.message)
-      // }
-      // if (response.status === 200) {
-      //   return setNotification(response.statusText)
-      // }
+      if (response.status !== 200) {
+        return setErrors(response.response.data.message)
+      }
+      if (response.status === 200) {
+        return setMessages(response.statusText)
+      }
     }
   }
 

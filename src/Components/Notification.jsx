@@ -15,14 +15,14 @@ const Notification = () => {
           {errors}
         </div>
       ) : (
-        <div></div>
+        ""
       )}
       {messages.length > 0 ? (
         <div className="notification is-success p-3 has-text-weight-bold">
           {messages}
         </div>
       ) : (
-        <div></div>
+        ""
       )}
     </>
   )

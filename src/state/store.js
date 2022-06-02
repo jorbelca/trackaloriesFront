@@ -18,7 +18,7 @@ export const useStore = create(set => ({
 
 
   user: {},
-  setUser: (loggedUser) => set(() => ({ user: loggedUser })),
+  setUser: (data) => set(() => ({ user: data })),
   removeUser: () => {
     set(() => ({ user: {} }))
   }
@@ -33,12 +33,11 @@ export const useStore = create(set => ({
   })),
   removeErrors: () => set(() => ({
     errors: []
-  }))
-  ,
+  })),
 
   messages: [],
   setMessages: (notification) => set(() => ({
-    messages: notification
+    messages: [notification]
   })),
   removeMessages: () => set(() => ({
     messages: []

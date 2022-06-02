@@ -2,21 +2,21 @@ import axios from "axios"
 import { BACKEND_API_URL } from "../config/envConfig"
 import getCompleteDate from "./completeDate"
 import { setHeader } from './setHeaderToken'
-const baseUrl = `${BACKEND_API_URL}/meals`
+const baseUrl = `${BACKEND_API_URL}/weight`
 
 
-const storeMealService = async (data, token) => {
-  const diaryEntry = {
+const setPermanentWeights = async (data, token) => {
+  const weightEntry = {
     date: getCompleteDate(),
-    data: [...data],
+    weight: data,
   }
 
   try {
-    const response = await axios.post(baseUrl, diaryEntry, {
+    const response = await axios.post(baseUrl, weightEntry, {
       headers: setHeader(token),
     })
-
     return response
+
   } catch (error) {
     console.error(error)
     return error
@@ -24,7 +24,7 @@ const storeMealService = async (data, token) => {
 }
 
 
-const getMealsService = async (token) => {
+const getPermanentWeights = async (token) => {
   try {
     const response = await axios.get(baseUrl, {
       headers: setHeader(token),
@@ -33,8 +33,8 @@ const getMealsService = async (token) => {
     return response
   } catch (error) {
     console.error(error)
-    return error
+    return error.response
   }
 }
 
-export { storeMealService, getMealsService }
+export { setPermanentWeights, getPermanentWeights }

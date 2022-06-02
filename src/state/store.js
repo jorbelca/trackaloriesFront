@@ -35,11 +35,15 @@ export const useStore = create(set => ({
     errors: []
   }))
   ,
-  notifications: [],
-  setNotification: (notification) => set(() => ({ notifications: [notification] })),
-  removeNotification: () => set(() => ({
-    notifications: []
+
+  messages: [],
+  setMessages: (notification) => set(() => ({
+    messages: notification
   })),
+  removeMessages: () => set(() => ({
+    messages: []
+  }))
+
 }))
 
 

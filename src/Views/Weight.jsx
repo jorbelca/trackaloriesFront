@@ -43,7 +43,7 @@ const Weight = () => {
     <>
       <Bar />
       <div>Weight</div>
-      <Chart data={weights} />
+
       <div className="container is-three-quarters m-5">
         <form onSubmit={handleSubmit}>
           <div className="field is-grouped">

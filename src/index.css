@@ -45,3 +45,6 @@ button.button.button-save{
   margin-left: auto; 
   margin-right: -10px;
 }
+.chart {
+  height: 400px;
+}

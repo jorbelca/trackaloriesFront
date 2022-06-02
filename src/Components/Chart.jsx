@@ -1,45 +1,26 @@
 import React from "react"
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts"
+import * as V from "victory"
+import { VictoryLine, VictoryChart, VictoryTheme } from "victory"
 
 const Chart = ({ data }) => {
-
   return (
-    <div style={{ width: '90%', height: '170px' }}>
-      <ResponsiveContainer>
-        <LineChart
-          width={500}
-          height={170}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
+    <div className="chart">
+      <VictoryChart theme={VictoryTheme.material}>
+        <VictoryLine
+          width={100}
+          style={{
+            data: { stroke: "#c43a31" },
+            parent: { border: "1px solid #ccc" },
           }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="weight"
-            stroke="#8884d8"
-            activeDot={{ r: 8 }}
-          />
-
-        </LineChart>
-      </ResponsiveContainer>
+          animate={{
+            duration: 2000,
+            onLoad: { duration: 1000 },
+          }}
+          data={data}
+          y={"weight"}
+          x={"date"}
+        />
+      </VictoryChart>
     </div>
   )
 }

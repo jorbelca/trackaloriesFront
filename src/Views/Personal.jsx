@@ -1,24 +1,62 @@
 import React, { useState } from "react"
 import Bar from "../Components/Bar"
 import { useStore } from "../state/store"
+import { setPersonalInfo } from "../Services/personalService"
+import eliminateUser from "../Services/eliminateUser"
+import { useNavigate } from "react-router-dom"
 
 const Personal = () => {
-  const { user, setErrors } = useStore()
+  const { user, setErrors, setMessages, removeUser } = useStore()
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [activity, setActivity] = useState(0)
 
-  const handleSubmit = () => {
-    const response = ""
+  const navigate = useNavigate()
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const token = window.localStorage.getItem("loggedUser")
+
+    const response = await setPersonalInfo(token)
+
     if (response.status !== 200) {
+      setErrors(response.message)
       return setErrors(response.response.data.error)
+    }
+    if (response.status === 200) {
+      return setMessages(response.statusText)
+    }
+  }
+
+  const handleEliminate = async (event) => {
+    event.preventDefault()
+
+    if (
+      window.confirm(
+        "You're going to eliminate all the information of your profile. This action is irrevocable. Want to continue?"
+      )
+    ) {
+      const token = window.localStorage.getItem("loggedUser")
+
+      const response = await eliminateUser(token)
+
+      if (response.status !== 200) {
+        return setErrors(response.response.data.error)
+      }
+      if (response.status === 200) {
+        window.localStorage.removeItem("loggedUser")
+        removeUser()
+        navigate("/")
+        return setMessages(response.statusText)
+      }
     }
   }
 
   return (
     <>
       <Bar />
+      {/* PERSONAL INFO FOR UPDATE */}
       <fieldset disabled>
         <div className="container is-three-quarters m-5">
           <form onSubmit={handleSubmit}>
@@ -87,7 +125,7 @@ const Personal = () => {
                   name="levelActivity"
                   onChange={(e) => setActivity(e.target.value)}
                 >
-                  <option selected disabled>
+                  <option defaultValue="" disabled>
                     Select
                   </option>
                   <option value={1}>I make exercise 1 day of the week</option>
@@ -104,14 +142,32 @@ const Personal = () => {
 
             <div className="field is-grouped mt-4">
               <div className="control">
-                <button className="button is-link " type="submit">
-                  Update
+                <button className="button is-link is-responsive" type="submit">
+                  Update Profile Info
                 </button>
               </div>
             </div>
           </form>
         </div>
       </fieldset>
+
+      {/* ELIMINATE BUTTON */}
+
+      <div className="ml-6 mr-6 ">
+        <div className="is-align-self-flex-end ">
+          <button
+            className="button is-fullwidth is-responsive is-danger "
+            onClick={handleEliminate}
+            aria-haspopup="true"
+            aria-controls="dropdown-menu"
+          >
+            <span> Delete Profile</span>
+            <span className="icon is-large ">
+              <i className="fas fa-times"></i>
+            </span>
+          </button>
+        </div>
+      </div>
     </>
   )
 }

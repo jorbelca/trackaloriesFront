@@ -9,8 +9,8 @@ import Personal from "./Views/Personal"
 import Diary from "./Views/Diary"
 import Weight from "./Views/Weight"
 import { useEffect } from "react"
-import personalService from "./Services/personalService"
 import { useStore } from "./state/store"
+import { getPersonalInfo } from "./Services/personalService"
 
 function App() {
   const { setErrors, setUser, setMessages } = useStore()
@@ -18,15 +18,15 @@ function App() {
 
   useEffect(() => {
     const welcome = async (token) => {
-      const response = await personalService(token)
+      const response = await getPersonalInfo(token)
 
       if (response.status === 200) {
         setMessages(response.statusText)
-        console.log(response.data)
+
         setUser(response.data)
       }
       if (response.status !== 200) {
-        return setErrors(response.message+ ". Try to Log in")
+        return setErrors(response.message + ". Try to Log in")
       }
     }
     welcome(token)

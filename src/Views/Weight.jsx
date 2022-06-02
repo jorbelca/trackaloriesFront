@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Bar from "../Components/Bar"
 import Chart from "../Components/Chart"
-import getCompleteDate from "../Services/completeDate"
 import { useStore } from "../state/store"
 import {
   getPermanentWeights,
@@ -12,13 +11,15 @@ const Weight = () => {
   const [formWeight, setFormWeight] = useState()
   const [weights, setWeights] = useState([])
 
-  const { setErrors } = useStore()
+  const { setErrors,setMessages } = useStore()
+  
   const token = window.localStorage.getItem("loggedUser")
 
   useEffect(() => {
     const find = async (token) => {
       const response = await getPermanentWeights(token)
       if (response.status !== 200) {
+        setErrors(response.message)
         return setErrors(response.statusText)
       }
       setWeights(response.data)
@@ -30,7 +31,11 @@ const Weight = () => {
     event.preventDefault()
     const response = await setPermanentWeights(+formWeight, token)
     if (response.status !== 200) {
+      setErrors(response.message)
       return setErrors(response.response.data.error)
+    }
+    if (response.status === 200) {
+      return setMessages(response.statusText)
     }
   }
 

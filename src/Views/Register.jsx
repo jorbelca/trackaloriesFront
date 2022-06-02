@@ -37,6 +37,7 @@ const Register = () => {
 
     // Handle errors
     if (response.status !== 200) {
+      setErrors(response.message)
       return setErrors(response.response.data.error)
     }
     if (response.status === 200) {

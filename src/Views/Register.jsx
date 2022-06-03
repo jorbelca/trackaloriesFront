@@ -12,8 +12,8 @@ const Register = () => {
   const [birthdate, setBirthdate] = useState("")
   const [height, setHeight] = useState(0)
   const [weight, setWeight] = useState(0)
-  const [sex, setSex] = useState("")
-  const [activity, setActivity] = useState(0)
+  const [sex, setSex] = useState()
+  const [activity, setActivity] = useState()
 
   const { setErrors, setNotification } = useStore()
   const navigate = useNavigate()
@@ -45,11 +45,22 @@ const Register = () => {
       navigate("/login")
     }
   }
+
+  const handleCancel = () => {
+    setUsername("")
+    setEmail("")
+    setPassword("")
+    setBirthdate("")
+    setActivity()
+    setWeight(0)
+    setHeight(0)
+    setSex()
+  }
   return (
     <>
       <Bar />
       <div className="container is-three-quarters m-5">
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="title is-3 center">
             <h3>Register</h3>
           </div>
@@ -115,7 +126,7 @@ const Register = () => {
               <label className="label">Birth Date</label>
               <p className="control has-icons-left">
                 <input
-                  className="input"
+                  className="input is-responsive"
                   type="date"
                   value={birthdate}
                   onChange={(e) => setBirthdate(e.target.value)}
@@ -172,7 +183,7 @@ const Register = () => {
           <div className="control is-expanded">
             <div className="select is-fullwidth">
               <select
-                name="levelActivity"
+                className="levelActivity "
                 onChange={(e) => setActivity(e.target.value)}
                 required
               >
@@ -200,12 +211,18 @@ const Register = () => {
 
           <div className="field is-grouped">
             <div className="control">
-              <button className="button is-link " type="submit">
+              <button
+                className="button is-success is-responsive"
+                type="submit"
+                onClick={handleSubmit}
+              >
                 Register
               </button>
             </div>
-            <div className="control">
-              <button className="button is-link is-light">Cancel</button>
+            <div className="control" onClick={handleCancel}>
+              <button className="button is-success is-light is-responsive">
+                Cancel
+              </button>
             </div>
           </div>
         </form>

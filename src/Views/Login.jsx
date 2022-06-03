@@ -38,9 +38,9 @@ function Login() {
     <>
       <Bar />
 
-      <div className="container is-max-desktop m-6">
+      <div className="container is-max-desktop m-4">
         <form onSubmit={handleSubmit} autoComplete="on">
-          <div className="columns is-mobile">
+          <div className="columns ">
             <div className="column is-three-fifths is-offset-one-fifth">
               <div className="title is-3 has-text-centered">
                 <h1>Login</h1>
@@ -80,9 +80,11 @@ function Login() {
                 </p>
               </div>
 
-              <div className="field is-align-self-center ">
+              <div className="field  ">
                 <p className="control">
-                  <button className="button is-success ">Login</button>
+                  <button className="button is-success responsive is-fullwidth">
+                    Login
+                  </button>
                 </p>
               </div>
             </div>

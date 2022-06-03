@@ -9,16 +9,20 @@ const Bar = () => {
 
   return (
     <>
-      <nav className="navbar " role="navigation" aria-label="main navigation">
+      <nav
+        className="navbar is-responsive"
+        role="navigation"
+        aria-label="main navigation"
+      >
         <div className="navbar-menu">
           <div className="navbar-start">
-            <Link className="navbar-item" to="/">
+            <Link className="navbar-item " to="/">
               <img src={logo} alt={"logo"} width={32} height={32} />
               <h1 className="title">TrackAlories</h1>
             </Link>
           </div>
 
-          <div className="navbar-end">
+          <div className="navbar-end mt-3">
             <div className="navbar-item">
               {user.username ? (
                 <>
@@ -60,12 +64,15 @@ const Bar = () => {
                   </div>
                 </>
               ) : (
-                <div className="buttons">
-                  <Link className="button is-primary" to="/register">
+                <div className="buttons mb-1">
+                  <Link
+                    className="button is-primary is-responsive"
+                    to="/register"
+                  >
                     <strong>Register</strong>
                   </Link>
 
-                  <Link className="button is-light" to="/login">
+                  <Link className="button is-light is-responsive" to="/login">
                     <strong>Log in</strong>
                   </Link>
                 </div>

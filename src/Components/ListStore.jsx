@@ -64,7 +64,11 @@ const ListStore = () => {
           <article className="media">
             <figure className="media-left">
               <p className="image is-64x64">
-                <img className="is-rounded" src={`${meal.photo.thumb}`} />
+                <img
+                  alt="photo of food"
+                  className="is-rounded"
+                  src={`${meal.photo.thumb}`}
+                />
               </p>
             </figure>
             <div className="media-content">

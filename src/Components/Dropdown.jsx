@@ -11,7 +11,8 @@ const Dropdown = ({ data }) => {
 
   return (
     <>
-      <div key={date}
+      <div
+        key={date}
         className={
           isActive ? "dropdown mr-2 mt-3" : "dropdown is-active mr-2 mt-3"
         }
@@ -42,6 +43,7 @@ const Dropdown = ({ data }) => {
                 <div className="totalCard">
                   <span className="image is-32x32 mr-1">
                     <img
+                      alt="photo of food"
                       className="is-rounded"
                       src={`${indMeal.photo.thumb}`}
                     />

@@ -10,11 +10,9 @@ import {
 const Weight = () => {
   const [formWeight, setFormWeight] = useState()
   const [weights, setWeights] = useState([])
-
-  const { setErrors,setMessages } = useStore()
-  
+  const { setErrors, setMessages } = useStore()
   const token = window.localStorage.getItem("loggedUser")
-
+  
   useEffect(() => {
     const find = async (token) => {
       const response = await getPermanentWeights(token)

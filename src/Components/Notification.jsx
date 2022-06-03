@@ -3,7 +3,6 @@ import { useStore } from "../state/store"
 
 const Notification = () => {
   const { errors, removeErrors, messages, removeMessages } = useStore()
-  console.log(messages)
 
   if (errors.length > 0) setTimeout(() => removeErrors(), 3000)
   if (messages.length > 0) setTimeout(() => removeMessages(), 3000)

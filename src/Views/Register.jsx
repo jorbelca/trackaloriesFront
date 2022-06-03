@@ -30,7 +30,6 @@ const Register = () => {
       sex: sex,
       activity: Number(activity),
     }
-    console.log(user)
 
     // Service for registration
     const response = registerService(user)
@@ -204,7 +203,7 @@ const Register = () => {
             <div className="control">
               <label className="checkbox">
                 <input type="checkbox" required />
-                <>&nbsp;</>I agree to the <a href="#">terms and conditions</a>
+                <>&nbsp;</>I agree to the <a href="/">terms and conditions</a>
               </label>
             </div>
           </div>

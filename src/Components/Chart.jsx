@@ -1,5 +1,4 @@
 import React from "react"
-import * as V from "victory"
 import { VictoryLine, VictoryChart, VictoryTheme } from "victory"
 
 const Chart = ({ data }) => {

@@ -4,19 +4,18 @@ import { Routes, Route } from "react-router-dom"
 import Landing from "./Views/Landing"
 import Register from "./Views/Register"
 import Login from "./Views/Login"
-import Home from "./Views/Home"
 import Personal from "./Views/Personal"
 import Diary from "./Views/Diary"
 import Weight from "./Views/Weight"
 import { useEffect } from "react"
 import { useStore } from "./state/store"
 import { getPersonalInfo } from "./Services/personalService"
+import SearchPage from "./Views/SearchPage"
 
 function App() {
   const { setErrors, setUser, setMessages } = useStore()
-  const token = window.localStorage.getItem("loggedUser")
-
   useEffect(() => {
+    const token = window.localStorage.getItem("loggedUser")
     const welcome = async (token) => {
       const response = await getPersonalInfo(token)
 
@@ -38,7 +37,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/personal" element={<Personal />} />
         <Route path="/diary" element={<Diary />} />
         <Route path="/weight" element={<Weight />} />

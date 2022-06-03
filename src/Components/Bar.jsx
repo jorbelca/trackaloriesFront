@@ -73,7 +73,7 @@ const Bar = () => {
                   </Link>
 
                   <Link className="button is-light is-responsive" to="/login">
-                    <strong>Log in</strong>
+                    <strong>Log In</strong>
                   </Link>
                 </div>
               )}

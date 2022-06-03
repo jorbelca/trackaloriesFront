@@ -4,7 +4,8 @@
   "private": true,
   "engines": {
     "node": "16.15.0",
-    "npm": "8.5.5"},
+    "npm": "8.5.5"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
@@ -20,13 +21,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build": "react-scripts build",    
     "lint": "eslint . --fix",
     "eject": "react-scripts eject",
     "css-build": "node-sass --omit-source-map-url  src/sass/mystyles.scss src/App.css",
     "css-watch": "npm run css-build -- --watch",
-    "css-start": "npm run css-watch"
+    "css-start": "npm run css-watch",
+    "cypress":"cypress open",
+    "cypress:headless": "cypress run --headed"
   },
   "eslintConfig": {
     "extends": [
@@ -48,6 +50,7 @@
   },
   "devDependencies": {
     "bulma": "^0.9.4",
+    "cypress": "^10.0.2",
     "node-sass": "^7.0.1",
     "prettier": "^2.6.2"
   }

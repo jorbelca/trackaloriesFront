@@ -13,7 +13,7 @@ const Search = () => {
 
     // Service for the search of the meal
     const response = await searchService(search)
-
+    setSearchFood("")
     // Handle errors
 
     if (response.status !== 200) {
@@ -37,6 +37,7 @@ const Search = () => {
                   placeholder="Find your meal"
                   value={search}
                   onChange={(e) => setSearchFood(e.target.value)}
+                  data-cy="search-bar"
                 />
               </div>
               <div className="control">

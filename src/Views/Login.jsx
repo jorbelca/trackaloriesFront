@@ -30,7 +30,7 @@ function Login() {
     if (response.status === 200) {
       setUser(response.data)
       window.localStorage.setItem("loggedUser", response.data.token)
-      navigate("/home", { replace: true })
+      navigate("/search", { replace: true })
     }
   }
 
@@ -56,6 +56,7 @@ function Login() {
                     onChange={(e) => setEmail(e.target.value)}
                     autoComplete="on"
                     required
+                    data-cy="login-email"
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>
@@ -73,6 +74,7 @@ function Login() {
                     placeholder="Password"
                     autoComplete="on"
                     required
+                    data-cy="login-password"
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>

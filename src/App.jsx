@@ -1,4 +1,4 @@
-import "../node_modules/bulma/css/bulma.min.css"
+// import "../node_modules/bulma/css/bulma.min.css"
 import "./App.css"
 import { Routes, Route } from "react-router-dom"
 import Landing from "./Views/Landing"

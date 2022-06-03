@@ -13,7 +13,7 @@ const Chart = ({ data }) => {
             parent: { border: "1px solid #ccc" },
           }}
           animate={{
-            duration: 2000,
+            duration: 1000,
             onLoad: { duration: 1000 },
           }}
           data={data}

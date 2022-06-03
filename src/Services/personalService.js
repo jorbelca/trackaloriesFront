@@ -16,9 +16,9 @@ const getPersonalInfo = async (token) => {
   }
 }
 
-const setPersonalInfo = async (info,token) => {
+const updatePersonalInfo = async (data, token) => {
   try {
-    const response = await axios.put(baseUrl, {
+    const response = await axios.put(baseUrl, data, {
       headers: setHeader(token),
     })
 
@@ -31,4 +31,4 @@ const setPersonalInfo = async (info,token) => {
 
 
 
-export  { getPersonalInfo, setPersonalInfo }
+export { getPersonalInfo, updatePersonalInfo }

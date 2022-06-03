@@ -1,16 +1,16 @@
 import React, { useState } from "react"
 import Bar from "../Components/Bar"
 import { useStore } from "../state/store"
-import { setPersonalInfo } from "../Services/personalService"
+import { updatePersonalInfo } from "../Services/personalService"
 import eliminateUser from "../Services/eliminateUser"
 import { useNavigate } from "react-router-dom"
 
 const Personal = () => {
   const { user, setErrors, setMessages, removeUser } = useStore()
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [activity, setActivity] = useState(0)
+  const [username, setUsername] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [activity, setActivity] = useState()
 
   const navigate = useNavigate()
 
@@ -18,13 +18,23 @@ const Personal = () => {
     event.preventDefault()
     const token = window.localStorage.getItem("loggedUser")
 
-    const response = await setPersonalInfo(token)
+    const data = {
+      username: username || user.username,
+      email: email || user.email,
+      activity: activity || user.activity,
+      password: password,
+    }
+
+    const response = await updatePersonalInfo(data, token)
 
     if (response.status !== 200) {
       setErrors(response.message)
       return setErrors(response.response.data.error)
     }
     if (response.status === 200) {
+      window.localStorage.removeItem("loggedUser")
+      removeUser()
+      navigate("/")
       return setMessages(response.statusText)
     }
   }
@@ -57,11 +67,13 @@ const Personal = () => {
     <>
       <Bar />
       {/* PERSONAL INFO FOR UPDATE */}
-      <fieldset disabled>
+      <fieldset>
         <div className="container is-three-quarters m-5">
           <form onSubmit={handleSubmit}>
             <div className="title is-6 center">Personal</div>
-
+            <div className="title is-7 ">
+              Only fill the fields that you want to update and click
+            </div>
             <div className="field is-grouped">
               <div className="control is-expanded">
                 <label className="label">Username</label>
@@ -125,9 +137,7 @@ const Personal = () => {
                   name="levelActivity"
                   onChange={(e) => setActivity(e.target.value)}
                 >
-                  <option defaultValue="" disabled>
-                    Select
-                  </option>
+                  <option defaultValue="">Select</option>
                   <option value={1}>I make exercise 1 day of the week</option>
                   <option value={2}>I make exercise 2 days of the week</option>
                   <option value={3}>I make exercise 3 days of the week</option>

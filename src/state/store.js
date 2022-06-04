@@ -28,17 +28,19 @@ export const useStore = create(set => ({
   setSearch: (newSearch) => set(() => ({ search: newSearch })),
 
   errors: [],
-  setErrors: (error) => set(() => ({
-    errors: [error]
-  })),
+  setErrors: (error) => set((state) => {
+    state.errors = [error]
+  }),
   removeErrors: () => set(() => ({
     errors: []
   })),
 
   messages: [],
-  setMessages: (notification) => set(() => ({
-    messages: [notification]
-  })),
+  setMessages: (notification) => set((state) => {
+    console.log(state.messages);
+    console.log(notification);
+    state.messages = [notification]
+  }),
   removeMessages: () => set(() => ({
     messages: []
   }))

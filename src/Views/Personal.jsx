@@ -170,8 +170,9 @@ const Personal = () => {
             onClick={handleEliminate}
             aria-haspopup="true"
             aria-controls="dropdown-menu"
+            data-cy="delete-profile"
           >
-            <span> Delete Profile</span>
+            <span>Delete Profile</span>
             <span className="icon is-large ">
               <i className="fas fa-times"></i>
             </span>

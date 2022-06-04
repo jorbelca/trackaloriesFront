@@ -27,7 +27,7 @@ const Bar = () => {
               {user.username ? (
                 <>
                   <div className="isLogged mr-5">
-                    <Link to="/home" className="icon-text mr-2">
+                    <Link to="/search" className="icon-text mr-2">
                       <span className="icon">
                         <i className="fa-solid fa-search"></i>
                       </span>

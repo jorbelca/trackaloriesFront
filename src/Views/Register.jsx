@@ -10,15 +10,15 @@ const Register = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [birthdate, setBirthdate] = useState("")
-  const [height, setHeight] = useState(0)
-  const [weight, setWeight] = useState(0)
+  const [height, setHeight] = useState()
+  const [weight, setWeight] = useState()
   const [sex, setSex] = useState()
   const [activity, setActivity] = useState()
 
-  const { setErrors, setNotification } = useStore()
+  const { setErrors, setMessages } = useStore()
   const navigate = useNavigate()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const user = {
       username: username,
@@ -32,16 +32,17 @@ const Register = () => {
     }
 
     // Service for registration
-    const response = registerService(user)
+    const response = await registerService(user)
 
     // Handle errors
     if (response.status !== 200) {
-      setErrors(response.message)
-      return setErrors(response.response.data.error)
+      setErrors(response.response.data.message)
+      // setErrors(response.message)
     }
     if (response.status === 200) {
-      setNotification(response.statusText)
       navigate("/login")
+      setMessages(response.statusText)
+      handleCancel()
     }
   }
 
@@ -51,8 +52,8 @@ const Register = () => {
     setPassword("")
     setBirthdate("")
     setActivity()
-    setWeight(0)
-    setHeight(0)
+    setWeight()
+    setHeight()
     setSex()
   }
   return (
@@ -76,6 +77,7 @@ const Register = () => {
                   placeholder="Enter your Username "
                   autoComplete="off"
                   required
+                  data-cy="register-username"
                 />
                 <span className="icon is-small is-left">
                   <i className="fas fa-user"></i>
@@ -94,6 +96,7 @@ const Register = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   autoComplete="off"
                   required
+                  data-cy="register-email"
                 />
                 <span className="icon is-small is-left">
                   <i className="fas fa-envelope"></i>
@@ -114,6 +117,7 @@ const Register = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   autoComplete="off"
                   required
+                  data-cy="register-password"
                 />
                 <span className="icon is-small is-left">
                   <i className="fas fa-lock"></i>
@@ -131,6 +135,7 @@ const Register = () => {
                   onChange={(e) => setBirthdate(e.target.value)}
                   autoComplete="off"
                   required
+                  data-cy="register-birthdate"
                 />
                 <span className="icon is-small is-left">
                   <i className="fas fa-calendar"></i>
@@ -144,7 +149,11 @@ const Register = () => {
               <label className="label">Sex</label>
 
               <div className="select">
-                <select onChange={(e) => setSex(e.target.value)} required>
+                <select
+                  onChange={(e) => setSex(e.target.value)}
+                  required
+                  data-cy="register-sex"
+                >
                   <option value="">Select</option>
                   <option value="female">Female</option>
                   <option value="male">Male</option>
@@ -161,6 +170,7 @@ const Register = () => {
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
                 required
+                data-cy="register-weight"
               ></input>
             </div>
 
@@ -173,6 +183,7 @@ const Register = () => {
                 value={height}
                 onChange={(e) => setHeight(e.target.value)}
                 required
+                data-cy="register-height"
               />
             </div>
           </div>
@@ -185,6 +196,7 @@ const Register = () => {
                 className="levelActivity "
                 onChange={(e) => setActivity(e.target.value)}
                 required
+                data-cy="register-activity"
               >
                 <option value="">Select</option>
                 <option value={1}>I make exercise 1 day of the week</option>
@@ -202,7 +214,7 @@ const Register = () => {
           <div className="field mt-4">
             <div className="control">
               <label className="checkbox">
-                <input type="checkbox" required />
+                <input type="checkbox" required data-cy="register-checkbox" />
                 <>&nbsp;</>I agree to the <a href="/">terms and conditions</a>
               </label>
             </div>
@@ -214,6 +226,7 @@ const Register = () => {
                 className="button is-success is-responsive"
                 type="submit"
                 onClick={handleSubmit}
+                data-cy="register-button"
               >
                 Register
               </button>

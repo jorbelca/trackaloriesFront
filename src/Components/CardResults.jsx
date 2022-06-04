@@ -24,6 +24,8 @@ const CardResults = () => {
                 alt="photo of logo"
                 className="is-rounded"
                 src={`${photo.thumb}`}
+                width={64}
+                height={64}
               />
             </p>
           </figure>

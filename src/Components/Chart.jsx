@@ -16,8 +16,8 @@ const Chart = ({ data }) => {
             onLoad: { duration: 1000 },
           }}
           data={data}
-          y={"weight"}
-          x={"date"}
+          y="weight"
+          x="date"
         />
       </VictoryChart>
     </div>

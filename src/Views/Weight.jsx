@@ -6,13 +6,14 @@ import {
   getPermanentWeights,
   setPermanentWeights,
 } from "../Services/weightService"
+import CaloriesPanel from "../Components/CaloriesPanel"
 
 const Weight = () => {
   const [formWeight, setFormWeight] = useState()
   const [weights, setWeights] = useState([])
   const { setErrors, setMessages } = useStore()
   const token = window.localStorage.getItem("loggedUser")
-  
+
   useEffect(() => {
     const find = async (token) => {
       const response = await getPermanentWeights(token)
@@ -33,6 +34,7 @@ const Weight = () => {
       return setErrors(response.response.data.error)
     }
     if (response.status === 200) {
+      setFormWeight()
       return setMessages(response.statusText)
     }
   }
@@ -40,29 +42,34 @@ const Weight = () => {
   return (
     <>
       <Bar />
-      <div>Weight</div>
-      <Chart data={weights} />
       <div className="container is-three-quarters m-5">
-        <form onSubmit={handleSubmit}>
-          <div className="field is-grouped">
-            <div className="control ">
-              <label className="label">Weight (kg)</label>
-              <input
-                className="input"
-                type="number"
-                placeholder="kg"
-                value={formWeight}
-                onChange={(e) => setFormWeight(e.target.value)}
-              ></input>
-              <div className="control">
-                <button className="button is-link " type="submit">
-                  Save
-                </button>
+        <div className="columns is-desktop is-flex-tablet">
+          <div className="column">
+            <form onSubmit={handleSubmit}>
+              <label className="label">Add your Weight (kg)</label>
+              <div className="field has-addons ">
+                <div className="control ">
+                  <input
+                    className="input is-responsive"
+                    type="number"
+                    placeholder="kg"
+                    value={formWeight}
+                    onChange={(e) => setFormWeight(e.target.value)}
+                    data-cy="add-weight"
+                  ></input>
+                </div>
+                <div className="control">
+                  <button className="button is-success ">Save</button>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
-        </form>
+          <div className="column">
+            <CaloriesPanel />
+          </div>{" "}
+        </div>
       </div>
+      <Chart data={weights} />
     </>
   )
 }

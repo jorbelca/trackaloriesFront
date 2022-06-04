@@ -7,7 +7,6 @@ const SearchPage = () => {
   return (
     <>
       <Bar />
-
       <Search />
 
     </>

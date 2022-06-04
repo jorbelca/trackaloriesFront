@@ -27,7 +27,7 @@ const Search = () => {
   return (
     <>
       <div className="container is-max-desktop">
-        <div className="column is-four-fifths">
+        <div className="column is-mobile ">
           <form onSubmit={handleSubmit}>
             <div className="field has-addons">
               <div className="control is-expanded">

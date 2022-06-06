@@ -14,7 +14,7 @@ const Dropdown = ({ data }) => {
       <div
         key={date}
         className={
-          isActive ? "dropdown mr-2 mt-3" : "dropdown is-active mr-2 mt-3"
+          isActive ? "dropdown mr-3 mt-3 ml-3" : "dropdown is-active pr-5 mr-6 mt-3 ml-0 "
         }
       >
         <div className="dropdown-trigger">

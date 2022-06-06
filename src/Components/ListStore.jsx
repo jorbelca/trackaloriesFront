@@ -83,25 +83,25 @@ const ListStore = () => {
                 <div className="level-item has-text-centered">
                   <div>
                     <p className="heading">Calories</p>
-                    <p className="title is-6">{meal.nf_calories} Kcal</p>
+                    <p className="is-size-6-mobile has-text-weight-bold">{meal.nf_calories} Kcal</p>
                   </div>
                 </div>
                 <div className="level-item has-text-centered">
                   <div>
                     <p className="heading">Carbohidrates</p>
-                    <p className="title is-6">{meal.nf_total_carbohydrate}g</p>
+                    <p className="is-size-6-mobile has-text-weight-bold">{meal.nf_total_carbohydrate}g</p>
                   </div>
                 </div>
                 <div className="level-item has-text-centered">
                   <div>
                     <p className="heading">Fat</p>
-                    <p className="title is-6">{meal.nf_total_fat}g</p>
+                    <p className="is-size-6-mobile has-text-weight-bold">{meal.nf_total_fat}g</p>
                   </div>
                 </div>
                 <div className="level-item has-text-centered">
                   <div>
                     <p className="heading">Protein</p>
-                    <p className="title is-6">{meal.nf_protein}g</p>
+                    <p className="is-size-6-mobile has-text-weight-bold">{meal.nf_protein}g</p>
                   </div>
                 </div>
               </nav>
@@ -137,28 +137,28 @@ const ListStore = () => {
               </div>
               <div className="level-item has-text-centered">
                 <div>
-                  <p className="title is-7 has-text-danger-dark">
+                  <p className="is-size-7-mobile has-text-danger-dark">
                     {totalCal} Kcal
                   </p>
                 </div>
               </div>
               <div className="level-item has-text-centered">
                 <div>
-                  <p className="title is-7 has-text-danger-dark">
+                  <p className="is-size-7-mobile has-text-danger-dark">
                     {+totalCarbs.toFixed(2)}g
                   </p>
                 </div>
               </div>
               <div className="level-item has-text-centered">
                 <div>
-                  <p className="title is-7 has-text-danger-dark">
+                  <p className="is-size-7-mobile has-text-danger-dark">
                     {+totalFats.toFixed(2)}g
                   </p>
                 </div>
               </div>
               <div className="level-item has-text-centered">
                 <div>
-                  <p className="title is-7 has-text-danger-dark">
+                  <p className="is-size-7-mobile has-text-danger-dark">
                     {+totalProt.toFixed(2)}g
                   </p>
                 </div>

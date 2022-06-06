@@ -69,7 +69,7 @@ const Weight = () => {
           </div>
           <div className="column">
             <CaloriesPanel />
-          </div>{" "}
+          </div>
         </div>
       </div>
       <Chart data={weights} />

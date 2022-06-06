@@ -55,13 +55,13 @@ describe("Search", function () {
   });
   it("can search food", function () {
     cy.get('[data-cy="search-bar"]').type('duck')
-    cy.get(".button").contains("Search").click().wait(400)
-    cy.get(".button-add").click().wait(400)
+    cy.get(".button").contains("Search").click().wait(500)
+    cy.get(".button-add").click()
     cy.get('[data-cy="search-bar"]').type('beer')
-    cy.get(".button").contains("Search").click()
-    cy.get(".button-add").click().wait(900)
+    cy.get(".button").contains("Search").click().wait(900)
+    cy.get(".button-add").click()
     cy.contains("624.88 Kcal")
-    cy.contains("Save in the diary").click().wait(200)
+    cy.contains("Save in the diary").click()
     cy.on('window:confirm', () => true);
   })
 })
@@ -71,7 +71,7 @@ describe("Search", function () {
 describe("Diary", function () {
   const date = getCompleteDate()
   it("can see the searched food", function () {
-    cy.get("a.icon-text i.fa-solid.fa-folder-open").click().wait(5000)
+    cy.get("a.icon-text i.fa-solid.fa-book-open").click().wait(5000)
     cy.get(".dropdown-trigger").contains(date).click()
   })
 })

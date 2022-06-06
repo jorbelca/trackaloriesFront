@@ -34,7 +34,7 @@ const Bar = () => {
                     </Link>
                     <Link to="/diary" className="icon-text ">
                       <span className="icon">
-                        <i className="fa-solid fa-folder-open"></i>
+                        <i className="fa-solid fa-book-open"></i>
                       </span>
                     </Link>
                     <Link to="/weight" className="icon-text ml-2 ">
@@ -42,8 +42,8 @@ const Bar = () => {
                         <i className="fa-solid fa-weight-scale "></i>
                       </span>
                     </Link>
-                    <Link to="/personal" className="icon-text">
-                      <span className="icon">
+                    <Link to="/personal" className="icon-text has-text-info">
+                      <span className="icon mr-0">
                         <i className="fa-solid fa-user"></i>
                       </span>
                       <span>{user.username}</span>

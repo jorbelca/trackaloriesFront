@@ -13,20 +13,19 @@ import { getPersonalInfo } from "./Services/personalService"
 import SearchPage from "./Views/SearchPage"
 
 function App() {
-  const { setErrors, setUser, setMessages } = useStore()
+  const {  setUser, setMessages } = useStore()
   useEffect(() => {
     const token = window.localStorage.getItem("loggedUser")
     const welcome = async (token) => {
       const response = await getPersonalInfo(token)
 
       if (response.status === 200) {
-
-        setMessages(response.statusText)
+        setMessages("Welcome!")
 
         setUser(response.data)
       }
       if (response.status !== 200) {
-        return setErrors(response.message + ". Try to Log in")
+        return console.error(response.message)
       }
     }
     welcome(token)

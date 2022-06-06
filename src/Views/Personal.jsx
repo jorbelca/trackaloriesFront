@@ -1,22 +1,45 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Bar from "../Components/Bar"
 import { useStore } from "../state/store"
-import { updatePersonalInfo } from "../Services/personalService"
+import {
+  getPersonalInfo,
+  updatePersonalInfo,
+} from "../Services/personalService"
 import eliminateUser from "../Services/eliminateUser"
 import { useNavigate } from "react-router-dom"
 
 const Personal = () => {
-  const { user, setErrors, setMessages, removeUser } = useStore()
+  const { user, setErrors, setMessages, removeUser, setUser } = useStore()
   const [username, setUsername] = useState()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [activity, setActivity] = useState()
 
   const navigate = useNavigate()
+  const token = window.localStorage.getItem("loggedUser")
+
+  // useEffect(() => {
+  //   const welcome = async () => {
+
+  //     const token = window.localStorage.getItem("loggedUser")
+  //     const response = await getPersonalInfo(token)
+
+  //     if (response.status === 200) {
+  //       setMessages(response.statusText)
+
+  //       setUser(response.data)
+  //     }
+  //     if (response.status !== 200) {
+  //       return setErrors(response.message + ". Try to Log in")
+  //     }
+  //   }
+  //   if (user.email == undefined) {
+  //     welcome()
+  //   }
+  // }, [])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const token = window.localStorage.getItem("loggedUser")
 
     const data = {
       username: username || user.username,
@@ -62,7 +85,7 @@ const Personal = () => {
       }
     }
   }
-
+  // console.log(user.email)
   return (
     <>
       <Bar />
@@ -102,6 +125,7 @@ const Personal = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     autoComplete="off"
+                    data-cy="update-email"
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>
@@ -136,6 +160,7 @@ const Personal = () => {
                 <select
                   name="levelActivity"
                   onChange={(e) => setActivity(e.target.value)}
+                  data-cy="update-activity"
                 >
                   <option defaultValue="">Select</option>
                   <option value={1}>I make exercise 1 day of the week</option>
@@ -152,7 +177,11 @@ const Personal = () => {
 
             <div className="field is-grouped mt-4">
               <div className="control">
-                <button className="button is-link is-responsive" type="submit">
+                <button
+                  className="button is-link is-responsive"
+                  type="submit"
+                  data-cy="update-button"
+                >
                   Update Profile Info
                 </button>
               </div>
@@ -164,7 +193,7 @@ const Personal = () => {
       {/* ELIMINATE BUTTON */}
 
       <div className="ml-6 mr-6 ">
-        <div className="is-align-self-flex-end ">
+        <div className="is-align-self-flex-end " data-cy="delete-profile">
           <button
             className="button is-fullwidth is-responsive is-danger "
             onClick={handleEliminate}

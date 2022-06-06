@@ -11,7 +11,7 @@ import CaloriesPanel from "../Components/CaloriesPanel"
 const Weight = () => {
   const [formWeight, setFormWeight] = useState()
   const [weights, setWeights] = useState([])
-  const { setErrors, setMessages } = useStore()
+  const { setErrors, setMessages, setUserWeight } = useStore()
   const token = window.localStorage.getItem("loggedUser")
 
   useEffect(() => {
@@ -29,11 +29,14 @@ const Weight = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const response = await setPermanentWeights(+formWeight, token)
+
     if (response.status !== 200) {
       setErrors(response.message)
       return setErrors(response.response.data.error)
     }
     if (response.status === 200) {
+      console.log(response.data)
+      setUserWeight(response.data)
       setFormWeight()
       return setMessages(response.statusText)
     }

@@ -19,6 +19,12 @@ export const useStore = create(set => ({
 
   user: {},
   setUser: (data) => set(() => ({ user: data })),
+  setUserWeight: (user, weight) =>
+    set(state => ({
+      user: { ...state.user, weight }
+    }
+    )),
+
   removeUser: () => {
     set(() => ({ user: {} }))
   }
@@ -37,8 +43,7 @@ export const useStore = create(set => ({
 
   messages: [],
   setMessages: (notification) => set((state) => {
-    console.log(state.messages);
-    console.log(notification);
+
     state.messages = [notification]
   }),
   removeMessages: () => set(() => ({

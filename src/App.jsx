@@ -20,6 +20,7 @@ function App() {
       const response = await getPersonalInfo(token)
 
       if (response.status === 200) {
+
         setMessages(response.statusText)
 
         setUser(response.data)

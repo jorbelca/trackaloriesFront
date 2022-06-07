@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react"
 import Bar from "../Components/Bar"
-import { useStore } from "../state/store"
+import { notificationStore } from "../state/store"
 import { getMealsService } from "../Services/storeMealsService"
 import Dropdown from "../Components/Dropdown"
+import Footer from "../Components/Footer"
 
 const Diary = () => {
   const [meals, setMeals] = useState([])
-  const { setErrors } = useStore()
+
+  const setNotification = notificationStore((state) => state.setNotifications)
+
   useEffect(() => {
     const token = window.localStorage.getItem("loggedUser")
     const find = async (token) => {
       const response = await getMealsService(token)
 
       if (response.status !== 200) {
-        setErrors(response.message)
-        return setErrors(response.response.data.error)
+        setNotification({ error: response.message })
+        return setNotification({ error: response.response.data.error })
       }
       setMeals(response.data)
     }
@@ -31,6 +34,7 @@ const Diary = () => {
               <Dropdown data={meal} />
             </>
           ))}
+      <Footer />
     </>
   )
 }

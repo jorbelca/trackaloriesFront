@@ -1,28 +1,37 @@
-import React from "react"
-import { useStore } from "../state/store"
+import React, { useState } from "react"
+import { notificationStore } from "../state/store"
 
 const Notification = () => {
-  const { errors, removeErrors, messages, removeMessages } = useStore()
+  const removeNotifications = notificationStore(
+    (state) => state.removeNotifications
+  )
+  const notifications = notificationStore((state) => state.notifications)
 
-  if (errors.length > 0) setTimeout(() => removeErrors(), 3000)
-  if (messages.length > 0) setTimeout(() => removeMessages(), 3000)
+  if (notifications.length > 0) setTimeout(() => removeNotifications(), 3000)
+
 
   return (
     <>
-      {errors.length > 0 ? (
-        <div className="notification is-danger p-3 has-text-weight-bold">
-          {errors}
-        </div>
-      ) : (
-        ""
-      )}
-      {messages.length > 0 ? (
-        <div className="notification is-success p-3 has-text-weight-bold">
-          {messages}
-        </div>
-      ) : (
-        ""
-      )}
+
+        <>
+          {Object.keys(notifications[0]) == "error" ? (
+            <>
+              <div className="notification is-danger p-3 has-text-weight-bold">
+                {notifications[0].error}
+              </div>
+            </>
+          ) : ""}
+          {Object.keys(notifications[0]) == "message" ? (
+            <>
+
+              <div className="notification is-success p-3 has-text-weight-bold">
+                {notifications[0].message}
+              </div>
+            </>
+          ) : ""}
+          
+        </>
+      
     </>
   )
 }

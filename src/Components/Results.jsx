@@ -1,10 +1,10 @@
 import React from 'react'
-import { useStore } from '../state/store';
+import { searchStore } from '../state/store';
 import CardResults from './CardResults';
 import ListStore from './ListStore';
 
 const Results = () => {
-  const { search } = useStore()
+  const search = searchStore((state) => state.search)
 
   return (
     <>

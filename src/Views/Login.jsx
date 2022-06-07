@@ -1,15 +1,18 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Bar from "../Components/Bar"
+import Footer from "../Components/Footer"
 import loginService from "../Services/loginService"
-import { useStore } from "../state/store"
+import { notificationStore, userStore } from "../state/store"
 
 function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   const navigate = useNavigate()
-  const { setUser, setErrors } = useStore()
+
+  const setNotification = notificationStore((state) => state.setNotifications)
+  const setUser = userStore((state) => state.setUser)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -23,8 +26,8 @@ function Login() {
 
     // Handle errors
     if (response.status !== 200) {
-      setErrors(response.message)
-      return setErrors(response.response.data.error)
+      setNotification({ error: response.message })
+      return setNotification({ error: response.response.data.error })
     }
 
     if (response.status === 200) {
@@ -93,6 +96,7 @@ function Login() {
           </div>
         </form>
       </div>
+      <Footer/>
     </>
   )
 }

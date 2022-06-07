@@ -11,6 +11,7 @@ const InfoMeals = ({ data }) => {
     totalCarbs += meal.nf_total_carbohydrate
     totalFats += meal.nf_total_fat
   })
+
   return (
     <>
       <div key={totalCal}>

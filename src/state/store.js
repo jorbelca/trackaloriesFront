@@ -1,6 +1,7 @@
 import create from 'zustand'
+import { devtools, persist } from 'zustand/middleware'
 
-export const useStore = create(set => ({
+let mealStoreIn = (set => ({
   meals: [],
   setMeal: (newMeal) =>
     set(state => ({
@@ -16,7 +17,9 @@ export const useStore = create(set => ({
       meals: []
     })),
 
+}))
 
+let userStoreIn = (set => ({
   user: {},
   setUser: (data) => set(() => ({ user: data })),
   setUserWeight: (user, weight) =>
@@ -28,28 +31,39 @@ export const useStore = create(set => ({
   removeUser: () => {
     set(() => ({ user: {} }))
   }
-  ,
 
+}))
+
+let searchStoreIn = (set => ({
   search: [],
   setSearch: (newSearch) => set(() => ({ search: newSearch })),
+}))
 
-  errors: [],
-  setErrors: (error) => set((state) => {
-    state.errors = [error]
-  }),
-  removeErrors: () => set(() => ({
-    errors: []
+let notificationStoreIn = (set => ({
+  notifications: [],
+  setNotifications: (message) => set(() => ({
+    notifications: [message]
   })),
-
-  messages: [],
-  setMessages: (notification) => set((state) => {
-
-    state.messages = [notification]
-  }),
-  removeMessages: () => set(() => ({
-    messages: []
-  }))
+  removeNotifications: () => set(() => ({
+    notifications: []
+  })),
 
 }))
 
 
+mealStoreIn = devtools(mealStoreIn)
+mealStoreIn = persist(mealStoreIn, { name: 'mealsState' })
+export const mealStore = create(mealStoreIn)
+
+
+userStoreIn = devtools(userStoreIn)
+userStoreIn = persist(userStoreIn, { name: 'userState' })
+export const userStore = create(userStoreIn)
+
+
+
+export const searchStore = create(searchStoreIn)
+
+
+notificationStoreIn = devtools(notificationStoreIn)
+export const notificationStore = create(notificationStoreIn)

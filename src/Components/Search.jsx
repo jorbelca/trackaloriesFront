@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 import searchService from "../Services/searchService"
-import { useStore } from "../state/store"
+import { notificationStore, searchStore } from "../state/store"
 import Results from "./Results"
 
 const Search = () => {
   const [search, setSearchFood] = useState("")
 
-  const { setSearch, setErrors } = useStore()
+  const setSearch = searchStore((state) => state.setSearch)
+  const setNotification = notificationStore((state) => state.setNotifications)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -17,7 +18,7 @@ const Search = () => {
     // Handle errors
 
     if (response.status !== 200) {
-      return setErrors(response.response.data.message)
+      return setNotification({ error: response.response.data.message })
     }
 
     // Storing in the global state
@@ -41,7 +42,7 @@ const Search = () => {
                 />
               </div>
               <div className="control">
-                <button className="button is-info">Search</button>
+                <button className="button is-success">Search</button>
               </div>
             </div>
           </form>

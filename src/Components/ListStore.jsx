@@ -1,10 +1,13 @@
 import React from "react"
 import { storeMealService } from "../Services/storeMealsService"
-import { useStore } from "../state/store"
+import { mealStore, notificationStore } from "../state/store"
 
 const ListStore = () => {
-  const { meals, removeMeal, resetSearchedMeals, setMessages, setErrors } =
-    useStore()
+  const setNotification = notificationStore((state) => state.setNotifications)
+
+  const meals = mealStore((state) => state.meals)
+  const removeMeal = mealStore((state) => state.removeMeal)
+  const resetSearchedMeals = mealStore((state) => state.resetSearchedMeals)
 
   const token = window.localStorage.getItem("loggedUser")
 
@@ -30,10 +33,10 @@ const ListStore = () => {
       resetSearchedMeals()
 
       if (response.status !== 200) {
-        return setErrors(response.response.data.message)
+        return setNotification({ error: response.response.data.message })
       }
       if (response.status === 200) {
-        return setMessages(response.statusText)
+        return setNotification({ message: response.statusText })
       }
     }
   }
@@ -44,10 +47,10 @@ const ListStore = () => {
         <>
           <div>List of Foods </div>
 
-          <div className="save-btn">
+          <div className="save-btn has-text-success">
             <button
               onClick={handleSave}
-              className="button button-save is-align-items-flex-end"
+              className="button button-save is-align-items-flex-end has-text-success"
             >
               <p>Save in the diary</p>
               <span className="icon ">
@@ -83,25 +86,33 @@ const ListStore = () => {
                 <div className="level-item has-text-centered">
                   <div>
                     <p className="heading">Calories</p>
-                    <p className="is-size-6-mobile has-text-weight-bold">{meal.nf_calories} Kcal</p>
+                    <p className="is-size-6-mobile has-text-weight-bold">
+                      {meal.nf_calories} Kcal
+                    </p>
                   </div>
                 </div>
                 <div className="level-item has-text-centered">
                   <div>
                     <p className="heading">Carbohidrates</p>
-                    <p className="is-size-6-mobile has-text-weight-bold">{meal.nf_total_carbohydrate}g</p>
+                    <p className="is-size-6-mobile has-text-weight-bold">
+                      {meal.nf_total_carbohydrate}g
+                    </p>
                   </div>
                 </div>
                 <div className="level-item has-text-centered">
                   <div>
                     <p className="heading">Fat</p>
-                    <p className="is-size-6-mobile has-text-weight-bold">{meal.nf_total_fat}g</p>
+                    <p className="is-size-6-mobile has-text-weight-bold">
+                      {meal.nf_total_fat}g
+                    </p>
                   </div>
                 </div>
                 <div className="level-item has-text-centered">
                   <div>
                     <p className="heading">Protein</p>
-                    <p className="is-size-6-mobile has-text-weight-bold">{meal.nf_protein}g</p>
+                    <p className="is-size-6-mobile has-text-weight-bold">
+                      {meal.nf_protein}g
+                    </p>
                   </div>
                 </div>
               </nav>
@@ -165,7 +176,18 @@ const ListStore = () => {
               </div>
             </nav>
           </div>
-          <div className="media-right mx-5 pr-1"></div>
+
+          <div className="media-right">
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                resetSearchedMeals()
+              }}
+              className="button is-danger is-normal is-responsive"
+            >
+              Clear all
+            </button>
+          </div>
         </article>
       ) : (
         <></>

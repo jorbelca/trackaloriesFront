@@ -1,25 +1,46 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Bar from "../Components/Bar"
+import Footer from "../Components/Footer"
 import getCompleteDate from "../Services/completeDate"
 import registerService from "../Services/registerService"
-import { useStore } from "../state/store"
+import { notificationStore } from "../state/store"
 
 const Register = () => {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [birthdate, setBirthdate] = useState("")
-  const [height, setHeight] = useState()
-  const [weight, setWeight] = useState()
-  const [sex, setSex] = useState()
-  const [activity, setActivity] = useState()
+  const [height, setHeight] = useState("")
+  const [weight, setWeight] = useState("")
+  const [sex, setSex] = useState("")
+  const [activity, setActivity] = useState("")
+  const [checkbox, setCheckBox] = useState(false)
 
-  const { setErrors, setMessages } = useStore()
+  const setNotification = notificationStore((state) => state.setNotifications)
+
   const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    if (checkbox === false)
+      return setNotification({
+        error: "You must accept the terms and conditions",
+      })
+    if (weight < 30 || weight > 250)
+      return setNotification({ error: "Incorrect weight" })
+    if (height < 50 || weight > 250)
+      return setNotification({ error: "Incorrect height" })
+    if (birthdate < "1920-01-02" || birthdate > getCompleteDate())
+      return setNotification({ error: "Incorrect birthdate" })
+    if (username.length < 3 || username.length > 12)
+      return setNotification({
+        error: "Username must contain between 3 and 12 caracters",
+      })
+    if (password.length < 3 || password.length > 12)
+      return setNotification({
+        error: "Password must contain between 3 and 12 caracters",
+      })
     const user = {
       username: username,
       email: email,
@@ -36,12 +57,14 @@ const Register = () => {
 
     // Handle errors
     if (response.status !== 200) {
-      setErrors(response.response.data.message)
-      // setErrors(response.message)
+      if (response.response.data == undefined)
+        setNotification({ error: response.message })
+      setNotification({ error: response.response.data.message })
+      return setNotification({ error: response.response.data.error })
     }
     if (response.status === 200) {
       navigate("/login")
-      setMessages(response.statusText)
+      setNotification({ message: response.statusText })
       handleCancel()
     }
   }
@@ -136,6 +159,8 @@ const Register = () => {
                   autoComplete="off"
                   required
                   data-cy="register-birthdate"
+                  min={"1920-01-02"}
+                  max={getCompleteDate()}
                 />
                 <span className="icon is-small is-left">
                   <i className="fas fa-calendar"></i>
@@ -171,6 +196,8 @@ const Register = () => {
                 onChange={(e) => setWeight(e.target.value)}
                 required
                 data-cy="register-weight"
+                min="30"
+                max="250"
               ></input>
             </div>
 
@@ -184,6 +211,8 @@ const Register = () => {
                 onChange={(e) => setHeight(e.target.value)}
                 required
                 data-cy="register-height"
+                min="50"
+                max="250"
               />
             </div>
           </div>
@@ -214,8 +243,17 @@ const Register = () => {
           <div className="field mt-4">
             <div className="control">
               <label className="checkbox">
-                <input type="checkbox" required data-cy="register-checkbox" />
-                <>&nbsp;</>I agree to the <a href="/">terms and conditions</a>
+                <input
+                  type="checkbox"
+                  required
+                  data-cy="register-checkbox"
+                  value={checkbox}
+                  onChange={() => setCheckBox(true)}
+                />
+                <>&nbsp;</>I agree to the{" "}
+                <a className="has-text-success" href="/terms-conditions">
+                  terms and conditions
+                </a>
               </label>
             </div>
           </div>
@@ -239,6 +277,7 @@ const Register = () => {
           </div>
         </form>
       </div>
+      <Footer/>
     </>
   )
 }

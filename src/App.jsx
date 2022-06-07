@@ -8,19 +8,22 @@ import Personal from "./Views/Personal"
 import Diary from "./Views/Diary"
 import Weight from "./Views/Weight"
 import { useEffect } from "react"
-import { useStore } from "./state/store"
+import { notificationStore, userStore } from "./state/store"
 import { getPersonalInfo } from "./Services/personalService"
 import SearchPage from "./Views/SearchPage"
+import Terms from "./Views/Terms"
 
 function App() {
-  const {  setUser, setMessages } = useStore()
+  const setUser = userStore((state) => state.setUser)
+  const setNotification = notificationStore((state) => state.setNotifications)
+
   useEffect(() => {
     const token = window.localStorage.getItem("loggedUser")
     const welcome = async (token) => {
       const response = await getPersonalInfo(token)
 
       if (response.status === 200) {
-        setMessages("Welcome!")
+        setNotification({ message: "Welcome!" })
 
         setUser(response.data)
       }
@@ -41,6 +44,7 @@ function App() {
         <Route path="/personal" element={<Personal />} />
         <Route path="/diary" element={<Diary />} />
         <Route path="/weight" element={<Weight />} />
+        <Route path="/terms-conditions" element={<Terms />} />
       </Routes>
     </div>
   )

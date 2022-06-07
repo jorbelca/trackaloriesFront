@@ -1,8 +1,9 @@
 import React from "react"
-import { useStore } from "../state/store"
+import { mealStore, searchStore } from "../state/store"
 
 const CardResults = () => {
-  const { search, setMeal } = useStore()
+  const search = searchStore((state) => state.search)
+  const setMeal = mealStore((state) => state.setMeal)
 
   const {
     food_name,

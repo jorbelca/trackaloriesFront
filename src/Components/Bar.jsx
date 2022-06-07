@@ -1,10 +1,14 @@
 import logo from "../assets/calories-icon-4.jpg"
 import { Link, useNavigate } from "react-router-dom"
-import { useStore } from "../state/store"
+import { mealStore, notificationStore, userStore } from "../state/store"
 import Notification from "./Notification"
 
 const Bar = () => {
-  const { user, errors, removeUser } = useStore()
+  const notification = notificationStore((state) => state.notifications)
+  const user = userStore((state) => state.user)
+  const removeUser = userStore((state) => state.removeUser)
+  const resetSearchedMeals = mealStore((state) => state.resetSearchedMeals)
+
   const navigate = useNavigate()
 
   return (
@@ -16,9 +20,17 @@ const Bar = () => {
       >
         <div className="navbar-menu">
           <div className="navbar-start">
-            <Link className="navbar-item " to="/">
-              <img src={logo} alt={"logo"} width={32} height={32} />
-              <h1 className="title">TrackAlories</h1>
+            <Link className="navbar-item" to="/">
+              <img
+                src={logo}
+                alt={"logo"}
+                width={32}
+                height={32}
+                className="is-hidden-mobile"
+              />
+              <h1 className="is-size-3 is-size-4-mobile has-text-weight-bold">
+                TrackAlories
+              </h1>
             </Link>
           </div>
 
@@ -42,7 +54,7 @@ const Bar = () => {
                         <i className="fa-solid fa-weight-scale "></i>
                       </span>
                     </Link>
-                    <Link to="/personal" className="icon-text has-text-info">
+                    <Link to="/personal" className="icon-text has-text-success">
                       <span className="icon mr-0">
                         <i className="fa-solid fa-user"></i>
                       </span>
@@ -55,6 +67,7 @@ const Bar = () => {
                         window.localStorage.removeItem("loggedUser")
                         removeUser()
                         navigate("/")
+                        resetSearchedMeals()
                       }}
                     >
                       <span className="icon ">
@@ -66,7 +79,7 @@ const Bar = () => {
               ) : (
                 <div className="buttons mb-1">
                   <Link
-                    className="button is-primary is-responsive"
+                    className="button is-success is-responsive"
                     to="/register"
                   >
                     <strong>Register</strong>
@@ -82,7 +95,7 @@ const Bar = () => {
         </div>
       </nav>
 
-      {errors === undefined || errors.length === 0 ? <></> : <Notification />}
+      {notification === undefined || notification.length === 0 ? <></> : <Notification />}
     </>
   )
 }

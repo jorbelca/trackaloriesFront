@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react"
 import Bar from "../Components/Bar"
 import Chart from "../Components/Chart"
-import { useStore } from "../state/store"
+import { notificationStore, userStore } from "../state/store"
 import {
   getPermanentWeights,
   setPermanentWeights,
 } from "../Services/weightService"
 import CaloriesPanel from "../Components/CaloriesPanel"
+import Footer from "../Components/Footer"
 
 const Weight = () => {
   const [formWeight, setFormWeight] = useState()
   const [weights, setWeights] = useState([])
-  const { setErrors, setMessages, setUserWeight } = useStore()
+
+  const setNotification = notificationStore((state) => state.setNotifications)
+  const setUserWeight = userStore((state) => state.setUserWeight)
+
   const token = window.localStorage.getItem("loggedUser")
 
   useEffect(() => {
     const find = async (token) => {
       const response = await getPermanentWeights(token)
       if (response.status !== 200) {
-        setErrors(response.message)
-        return setErrors(response.statusText)
+        setNotification({ error: response.statusText })
+        return setNotification({ error: response.message })
       }
       setWeights(response.data)
     }
@@ -31,14 +35,14 @@ const Weight = () => {
     const response = await setPermanentWeights(+formWeight, token)
 
     if (response.status !== 200) {
-      setErrors(response.message)
-      return setErrors(response.response.data.error)
+      setNotification({ error: response.message })
+      return setNotification({ error: response.response.data.error })
     }
     if (response.status === 200) {
-      console.log(response.data)
+      setWeights(response.data.weight)
       setUserWeight(response.data)
       setFormWeight()
-      return setMessages(response.statusText)
+      return setNotification({ message: response.statusText })
     }
   }
 
@@ -59,6 +63,8 @@ const Weight = () => {
                     value={formWeight}
                     onChange={(e) => setFormWeight(e.target.value)}
                     data-cy="add-weight"
+                    min="30"
+                    max="250"
                   ></input>
                 </div>
                 <div className="control">
@@ -73,6 +79,7 @@ const Weight = () => {
         </div>
       </div>
       <Chart data={weights} />
+      <Footer/>
     </>
   )
 }

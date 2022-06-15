@@ -31,7 +31,9 @@ function App() {
         return console.error(response.message)
       }
     }
-    welcome(token)
+    if (token !== null ){ welcome(token)}
+
+
   }, [])
 
   return (

@@ -50,7 +50,7 @@ button.button.button-save{
 }
 
 footer.footer {
-  background-color: #EFF0EB;
+  background-color: transparent;
   position: fixed;
   padding: 0px 10px 0px 10px;
   bottom: 0;

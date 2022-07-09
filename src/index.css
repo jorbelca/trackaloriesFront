@@ -11,7 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+nav.navbar{
+   top: 0;
+  width: 100%;
 
+}
 .card-results{
   background-color: #fff;
   border-radius: 5px;
@@ -50,10 +54,13 @@ button.button.button-save{
 }
 
 footer.footer {
-  background-color: transparent;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
   position: fixed;
-  padding: 0px 10px 0px 10px;
   bottom: 0;
   width: 100%;
-  height: 45px;
+  height: 50px !important;
+  font-weight: 200;
 }

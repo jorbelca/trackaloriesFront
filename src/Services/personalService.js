@@ -1,7 +1,7 @@
 import axios from "axios"
 import { BACKEND_API_URL } from "../config/envConfig"
 import { setHeader } from "./setHeaderToken"
-const baseUrl = `${BACKEND_API_URL}/personal`
+const baseUrl = `${BACKEND_API_URL}/api/personal`
 
 const getPersonalInfo = async (token) => {
   try {

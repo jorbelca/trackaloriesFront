@@ -2,7 +2,7 @@ import axios from "axios"
 import { BACKEND_API_URL } from "../config/envConfig"
 import getCompleteDate from "./completeDate"
 import { setHeader } from './setHeaderToken'
-const baseUrl = `${BACKEND_API_URL}/meals`
+const baseUrl = `${BACKEND_API_URL}/api/meals`
 
 
 const storeMealService = async (data, token) => {

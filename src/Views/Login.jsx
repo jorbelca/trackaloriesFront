@@ -96,7 +96,7 @@ function Login() {
           </div>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </>
   )
 }

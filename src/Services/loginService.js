@@ -1,6 +1,6 @@
 import axios from "axios"
 import { BACKEND_API_URL } from "../config/envConfig"
-const baseUrl = `${BACKEND_API_URL}/login`
+const baseUrl = `${BACKEND_API_URL}/api/login`
 
 const loginService = async (credentials) => {
   try {

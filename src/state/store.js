@@ -22,7 +22,7 @@ let mealStoreIn = (set => ({
 let userStoreIn = (set => ({
   user: {},
   setUser: (data) => set(() => ({ user: data })),
-  setUserWeight: (user, weight) =>
+  setUserWeight: (weight) =>
     set(state => ({
       user: { ...state.user, weight }
     }

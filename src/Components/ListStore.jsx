@@ -149,7 +149,7 @@ const ListStore = () => {
               <div className="level-item has-text-centered">
                 <div>
                   <p className="is-size-7-mobile has-text-danger-dark">
-                    {totalCal} Kcal
+                    {+totalCal.toFixed(2)} Kcal
                   </p>
                 </div>
               </div>

@@ -52,6 +52,16 @@ const Weight = () => {
       <div className="container is-three-quarters m-5">
         <div className="columns is-desktop is-flex-tablet">
           <div className="column">
+            <CaloriesPanel />
+          </div>
+          <div
+            className="column"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <form onSubmit={handleSubmit}>
               <label className="label">Add your Weight (kg)</label>
               <div className="field has-addons ">
@@ -73,13 +83,10 @@ const Weight = () => {
               </div>
             </form>
           </div>
-          <div className="column">
-            <CaloriesPanel />
-          </div>
         </div>
       </div>
       <Chart data={weights} />
-      <Footer/>
+      <Footer />
     </>
   )
 }

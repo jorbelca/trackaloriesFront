@@ -45,18 +45,20 @@ const ListStore = () => {
     <>
       {totalCal !== 0 ? (
         <>
-          <div>List of Foods </div>
+          <div className="title-list">
+            <div>List of Foods </div>
 
-          <div className="save-btn has-text-success">
-            <button
-              onClick={handleSave}
-              className="button button-save is-align-items-flex-end has-text-success"
-            >
-              <p>Save in the diary</p>
-              <span className="icon ">
-                <i className="fa-solid fa-folder-open"></i>
-              </span>
-            </button>
+            <div className="save-btn has-text-success">
+              <button
+                onClick={handleSave}
+                className="button button-save is-align-items-flex-end has-text-success"
+              >
+                <p>Save in the diary</p>
+                <span className="icon ">
+                  <i className="fa-solid fa-folder-open"></i>
+                </span>
+              </button>
+            </div>
           </div>
         </>
       ) : (

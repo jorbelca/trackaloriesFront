@@ -3,8 +3,8 @@ import React from "react"
 const Footer = () => {
   return (
     <>
-      <footer className="footer">
-        <div className="is-size-7">
+      <div className="foot">
+        <div className="is-size-7 foot-content">
           You can contact me at
           <a href="https://github.com/jorbelca">
             <span className="icon has-text-success is-large">
@@ -12,7 +12,7 @@ const Footer = () => {
             </span>
           </a>
         </div>
-      </footer>
+      </div>
     </>
   )
 }

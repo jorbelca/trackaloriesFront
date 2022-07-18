@@ -19,7 +19,7 @@ const CardResults = () => {
     <>
       <div className="card-results ">
         <article className="media">
-          <figure className="media-left">
+          <div className="media-left">
             <p className="image is-64x64">
               <img
                 alt="photo of logo"
@@ -29,7 +29,7 @@ const CardResults = () => {
                 height={64}
               />
             </p>
-          </figure>
+          </div>
           <div className="media-content">
             <div className="content">
               <p>
@@ -72,6 +72,19 @@ const CardResults = () => {
                 </div>
               </div>
             </nav>
+          </div>
+          <div className="media-right mt-4">
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                setMeal(search)
+              }}
+              className="button button-add is-normal"
+            >
+              <span className="icon ">
+                <i className="fas fa-lg fa-solid fa-circle-plus"></i>
+              </span>
+            </button>
           </div>
         </article>
       </div>

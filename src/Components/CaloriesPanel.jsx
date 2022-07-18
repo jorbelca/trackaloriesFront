@@ -9,10 +9,13 @@ const CaloriesPanel = () => {
 
   let age = 30
   let calories
+  let lastWeight
+  if (user.weight !== undefined)
+    lastWeight = user.weight[user.weight.length - 1].weight
   if (user.sex === "male") {
-    calories = user.weight.at(-1).weight * 10 + 6 * user.height - age * 5 + 5
+    calories = lastWeight * 10 + 6 * user.height - age * 5 + 5
   } else {
-    calories = user.weight.at(-1).weight * 10 + 6 * user.height - age * 5 - 161
+    calories = lastWeight * 10 + 6 * user.height - age * 5 - 161
   }
   switch (user.activity) {
     case 1:
@@ -65,7 +68,7 @@ const CaloriesPanel = () => {
           </div>
           <div>
             You must ingest <b>{(calories * 0.8).toFixed(2)} </b>calories/day to
-            have a sustancial weight loss
+            have a sustantial weight loss
           </div>
           <div style={{ fontSize: 6 }}>
             *This results are based on the Mifflin-St Jeor Equation
